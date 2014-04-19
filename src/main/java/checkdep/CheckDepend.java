@@ -5,7 +5,7 @@ import checkdep.graph.DependMapper;
 import checkdep.parse.ImportParser;
 import checkdep.write.ViolationWriter;
 
-public class CheckDependMain {
+public class CheckDepend {
 
   public static void main(String[] args) {
     // TODO
@@ -16,7 +16,7 @@ public class CheckDependMain {
   private final DependChecker checker;
   private final ViolationWriter writer;
 
-  public CheckDependMain(ImportParser parser, DependMapper mapper,
+  public CheckDepend(ImportParser parser, DependMapper mapper,
       DependChecker checker, ViolationWriter writer) {
     this.parser = parser;
     this.mapper = mapper;
