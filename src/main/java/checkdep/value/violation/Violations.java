@@ -6,7 +6,7 @@ import checkdep.util.ListBase;
 
 public class Violations extends ListBase<Violation> {
 
-  public Violations(Set<Violation> list) {
-    super(list);
+  public Violations(Set<Violation> set) {
+    super(set);
   }
 }

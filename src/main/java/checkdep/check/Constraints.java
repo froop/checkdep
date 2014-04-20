@@ -6,7 +6,7 @@ import checkdep.util.ListBase;
 
 public class Constraints extends ListBase<Constraint> {
 
-  public Constraints(Collection<Constraint> list) {
-    super(list);
+  public Constraints(Collection<Constraint> collection) {
+    super(collection);
   }
 }
