@@ -13,9 +13,9 @@ import checkdep.value.depend.Dependency;
 
 public class JDependImportParser implements ImportParser {
   private final SourceDirectories source;
-  private final PackageFilter filter;
+  private final Filter filter;
 
-  public JDependImportParser(SourceDirectories source, PackageFilter filter) {
+  public JDependImportParser(SourceDirectories source, Filter filter) {
     this.source = source;
     this.filter = filter;
   }
