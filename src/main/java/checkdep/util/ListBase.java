@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 import com.google.common.collect.ImmutableList;
 
-public abstract class ListBase<E> implements Iterable<E> {
+public abstract class ListBase<E> extends ValueBase implements Iterable<E> {
   private final ImmutableList<E> list;
 
   public ListBase(Collection<E> list) {
