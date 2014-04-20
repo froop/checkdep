@@ -16,8 +16,4 @@ public abstract class ListBase<E> extends ValueBase implements Iterable<E> {
   public Iterator<E> iterator() {
     return list.iterator();
   }
-
-  public boolean contains(E element) {
-    return list.contains(element);
-  }
 }

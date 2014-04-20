@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -16,11 +17,11 @@ public class DependenciesTest {
     List<Dependency> list = Arrays.asList(
         new DependencyStub("test1"), new DependencyStub("test2"));
 
-    Dependencies target = new Dependencies(list);
+    Dependencies target = Dependencies.of(list);
 
-    Iterator<Dependency> it = target.iterator();
-    assertThat(it.next().getName(), is(new PackageName("test1")));
-    assertThat(it.next().getName(), is(new PackageName("test2")));
+    Iterator<PackageName> it = target.keySet().iterator();
+    assertThat(it.next(), is(new PackageName("test1")));
+    assertThat(it.next(), is(new PackageName("test2")));
     assertFalse(it.hasNext());
   }
 
@@ -34,6 +35,12 @@ public class DependenciesTest {
     @Override
     public PackageName getName() {
       return new PackageName(name);
+    }
+
+    @Override
+    public Set<PackageName> getEfferents() {
+      // TODO Auto-generated method stub
+      return null;
     }
   }
 }

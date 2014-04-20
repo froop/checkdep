@@ -11,6 +11,10 @@ public class Constraint {
     this.efferent = efferent;
   }
 
+  public Constraint(String afferent, String efferent) {
+    this(new PackageName(afferent), new PackageName(efferent));
+  }
+
   public PackageName getAfferent() {
     return afferent;
   }

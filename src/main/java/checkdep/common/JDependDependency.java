@@ -2,13 +2,11 @@ package checkdep.common;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import jdepend.framework.JavaPackage;
-
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import checkdep.value.depend.Dependencies;
 import checkdep.value.depend.Dependency;
 import checkdep.value.depend.PackageName;
@@ -25,26 +23,22 @@ public class JDependDependency implements Dependency {
     return new PackageName(raw.getName());
   }
 
+  @Override
+  public Set<PackageName> getEfferents() {
+    Set<PackageName> res = new LinkedHashSet<PackageName>();
+    @SuppressWarnings("unchecked")
+    Collection<JavaPackage> efferents = raw.getEfferents();
+    for (JavaPackage efferent : efferents) {
+      res.add(new PackageName(efferent.getName()));
+    }
+    return res;
+  }
+
   public static Dependencies toDependencies(Collection<JavaPackage> packages) {
     List<Dependency> res = new ArrayList<Dependency>();
     for (JavaPackage item : packages) {
       res.add(new JDependDependency(item));
     }
-    return new Dependencies(res);
-  }
-
-  @Override
-  public int hashCode() {
-    return new HashCodeBuilder().append(getName()).toHashCode();
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (obj instanceof JDependDependency) {
-      JDependDependency other = (JDependDependency) obj;
-      return new EqualsBuilder().append(getName(), other.getName()).isEquals();
-    } else {
-      return false;
-    }
+    return Dependencies.of(res);
   }
 }

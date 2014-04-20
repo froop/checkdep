@@ -1,7 +1,8 @@
 package checkdep.check;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Optional;
+import java.util.Set;
 
 import jdepend.framework.DependencyConstraint;
 import checkdep.common.JDependDependency;
@@ -20,14 +21,35 @@ public class JDependConstraintChecker implements ConstraintChecker {
 
   @Override
   public Violations check(Dependencies dependencies) {
-    List<Violation> res = new ArrayList<Violation>();
+    Set<Violation> res = new LinkedHashSet<Violation>();
     Dependencies constraintDeps = toDependencies(createJDependConstraint());
-    for (Dependency item : dependencies) {
-      if (!constraintDeps.contains(item)) {
-        res.add(new Violation(item.getName()));
+    for (Dependency actual : dependencies.values()) {
+      Optional<Dependency> expect = constraintDeps.get(actual.getName());
+      if (expect.isPresent()) {
+        res.addAll(checkEfferents(actual, expect.get()));
+      } else {
+        res.addAll(toViolations(actual));
       }
     }
     return new Violations(res);
+  }
+
+  private Set<Violation> checkEfferents(Dependency actual, Dependency expect) {
+    Set<Violation> res = new LinkedHashSet<Violation>();
+    for (PackageName efferent : actual.getEfferents()) {
+      if (!expect.getEfferents().contains(efferent)) {
+        res.add(new Violation(actual.getName(), efferent));
+      }
+    }
+    return res;
+  }
+
+  private Set<Violation> toViolations(Dependency item) {
+    Set<Violation> res = new LinkedHashSet<Violation>();
+    for (PackageName efferent : item.getEfferents()) {
+      res.add(new Violation(item.getName(), efferent));
+    }
+    return res;
   }
 
   private DependencyConstraint createJDependConstraint() {

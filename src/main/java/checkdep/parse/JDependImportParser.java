@@ -38,6 +38,7 @@ public class JDependImportParser implements ImportParser {
     // TODO
     filter.addPackage("java.lang");
     filter.addPackage("java.util");
+    filter.addPackage("checkdep.util");
   }
 
   @SuppressWarnings("unchecked")
