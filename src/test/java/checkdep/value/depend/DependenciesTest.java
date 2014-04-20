@@ -19,8 +19,8 @@ public class DependenciesTest {
     Dependencies target = new Dependencies(list);
 
     Iterator<Dependency> it = target.iterator();
-    assertThat(it.next().getName(), is("test1"));
-    assertThat(it.next().getName(), is("test2"));
+    assertThat(it.next().getName(), is(new PackageName("test1")));
+    assertThat(it.next().getName(), is(new PackageName("test2")));
     assertFalse(it.hasNext());
   }
 
@@ -32,8 +32,8 @@ public class DependenciesTest {
     }
 
     @Override
-    public String getName() {
-      return name;
+    public PackageName getName() {
+      return new PackageName(name);
     }
   }
 }

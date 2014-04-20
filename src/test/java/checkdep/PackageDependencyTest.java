@@ -19,6 +19,7 @@ public class PackageDependencyTest {
     PackageFilter filter = jdepend.getFilter();
     filter.addPackage("java.lang");
     filter.addPackage("java.util");
+    filter.addPackage("org.apache.commons.lang3");
     jdepend.analyze();
 
     DependencyConstraint constraint = new DependencyConstraint();
@@ -28,10 +29,14 @@ public class PackageDependencyTest {
 //    addDep(constraint, "checkdep", "checkdep.check");
     addDep(constraint, "checkdep.parse", "java.io");
     addDep(constraint, "checkdep.parse", "jdepend.framework");
+    addDep(constraint, "checkdep.parse", "checkdep.common");
     addDep(constraint, "checkdep.parse", "checkdep.value.depend");
 //    addDep(constraint, "checkdep.check", "checkdep.value.depend");
+    addDep(constraint, "checkdep.check", "jdepend.framework");
     addDep(constraint, "checkdep.check", "checkdep.value.violation");
-    addDep(constraint, "checkdep.value.depend", "com.google.common.collect");
+//    addDep(constraint, "checkdep.check", "checkdep.common");
+    addDep(constraint, "checkdep.common", "jdepend.framework");
+    addDep(constraint, "checkdep.util", "com.google.common.collect");
 
     assertTrue(jdepend.dependencyMatch(constraint));
   }
