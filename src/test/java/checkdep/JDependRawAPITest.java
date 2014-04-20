@@ -10,7 +10,7 @@ import jdepend.framework.PackageFilter;
 
 import org.junit.Test;
 
-public class PackageDependencyTest {
+public class JDependRawAPITest {
 
   @Test
   public void test() throws IOException {
