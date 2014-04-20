@@ -4,14 +4,14 @@ import jdepend.framework.JavaPackage;
 import checkdep.value.depend.Dependency;
 
 class JDependDependency implements Dependency {
-  private final String name;
+  private final JavaPackage raw;
 
   public JDependDependency(JavaPackage raw) {
-    this.name = raw.getName();
+    this.raw = raw;
   }
 
   @Override
   public String getName() {
-    return name;
+    return raw.getName();
   }
 }
