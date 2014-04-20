@@ -1,8 +1,9 @@
 package checkdep.check;
 
+import checkdep.util.ValueBase;
 import checkdep.value.depend.PackageName;
 
-public class Constraint {
+public class Constraint extends ValueBase {
   private final PackageName from;
   private final PackageName to;
 
@@ -21,5 +22,10 @@ public class Constraint {
 
   public PackageName getTo() {
     return to;
+  }
+
+  @Override
+  public String toString() {
+    return from + " -> " + to;
   }
 }
