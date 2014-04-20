@@ -9,7 +9,7 @@ import checkdep.value.depend.Dependencies;
 import checkdep.value.depend.Dependency;
 import checkdep.value.depend.PackageName;
 
-public class JDependDependency implements Dependency {
+public class JDependDependency implements Dependency, Comparable<Dependency> {
   private final JavaPackage raw;
 
   public JDependDependency(JavaPackage raw) {
@@ -38,5 +38,10 @@ public class JDependDependency implements Dependency {
       res.add(new JDependDependency(item));
     }
     return Dependencies.of(res);
+  }
+
+  @Override
+  public int compareTo(Dependency other) {
+    return getName().compareTo(other.getName());
   }
 }
