@@ -3,7 +3,7 @@ package checkdep;
 import checkdep.check.DependChecker;
 import checkdep.graph.DependMapper;
 import checkdep.parse.ImportParser;
-import checkdep.write.ViolationWriter;
+import checkdep.value.violation.Violations;
 
 public class CheckDepend {
 
@@ -14,17 +14,15 @@ public class CheckDepend {
   private final ImportParser parser;
   private final DependMapper mapper;
   private final DependChecker checker;
-  private final ViolationWriter writer;
 
   public CheckDepend(ImportParser parser, DependMapper mapper,
-      DependChecker checker, ViolationWriter writer) {
+      DependChecker checker) {
     this.parser = parser;
     this.mapper = mapper;
     this.checker = checker;
-    this.writer = writer;
   }
 
-  public void execute() {
-    writer.write(checker.check(mapper.map(parser.parse())));
+  public Violations execute() {
+    return checker.check(mapper.map(parser.parse()));
   }
 }
