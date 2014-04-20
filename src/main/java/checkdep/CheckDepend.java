@@ -1,14 +1,14 @@
 package checkdep;
 
-import checkdep.check.DependChecker;
+import checkdep.check.ConstraintChecker;
 import checkdep.parse.ImportParser;
 import checkdep.value.violation.Violations;
 
 public class CheckDepend {
   private final ImportParser parser;
-  private final DependChecker checker;
+  private final ConstraintChecker checker;
 
-  public CheckDepend(ImportParser parser, DependChecker checker) {
+  public CheckDepend(ImportParser parser, ConstraintChecker checker) {
     this.parser = parser;
     this.checker = checker;
   }
