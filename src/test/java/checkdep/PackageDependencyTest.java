@@ -22,18 +22,14 @@ public class PackageDependencyTest {
     jdepend.analyze();
 
     DependencyConstraint constraint = new DependencyConstraint();
-    addDep(constraint, "checkdep", "checkdep.value.declaration");
-    addDep(constraint, "checkdep", "checkdep.value.graph");
-    addDep(constraint, "checkdep", "checkdep.value.violation");
+//    addDep(constraint, "checkdep", "checkdep.value.depend");
+//    addDep(constraint, "checkdep", "checkdep.value.violation");
     addDep(constraint, "checkdep", "checkdep.parse");
-    addDep(constraint, "checkdep", "checkdep.graph");
-    addDep(constraint, "checkdep", "checkdep.check");
-    addDep(constraint, "checkdep.parse", "checkdep.value.declaration");
-    addDep(constraint, "checkdep.graph", "checkdep.value.declaration");
-    addDep(constraint, "checkdep.graph", "checkdep.value.graph");
+//    addDep(constraint, "checkdep", "checkdep.check");
+    addDep(constraint, "checkdep.parse", "checkdep.value.depend");
+//    addDep(constraint, "checkdep.check", "checkdep.value.depend");
     addDep(constraint, "checkdep.check", "checkdep.value.violation");
-//    addDep(constraint, "checkdep.value.declaration", "java.util");
-    addDep(constraint, "checkdep.value.declaration", "com.google.common.collect");
+    addDep(constraint, "checkdep.value.depend", "com.google.common.collect");
 
     assertTrue(jdepend.dependencyMatch(constraint));
   }

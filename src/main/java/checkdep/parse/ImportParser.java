@@ -1,8 +1,8 @@
 package checkdep.parse;
 
-import checkdep.value.declaration.PackageDeclaration;
+import checkdep.value.depend.Dependencies;
 
 public interface ImportParser {
 
-  public PackageDeclaration parse();
+  public Dependencies parse();
 }
