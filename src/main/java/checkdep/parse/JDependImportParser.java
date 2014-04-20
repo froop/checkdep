@@ -1,16 +1,11 @@
 package checkdep.parse;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 import jdepend.framework.JDepend;
-import jdepend.framework.JavaPackage;
 import jdepend.framework.PackageFilter;
 import checkdep.common.JDependDependency;
 import checkdep.value.depend.Dependencies;
-import checkdep.value.depend.Dependency;
 
 public class JDependImportParser implements ImportParser {
   private final SourceDirectories source;
@@ -45,13 +40,8 @@ public class JDependImportParser implements ImportParser {
     filter.addPackage("java.util");
   }
 
+  @SuppressWarnings("unchecked")
   private Dependencies toDependencies(JDepend jdepend) {
-    List<Dependency> res = new ArrayList<Dependency>();
-    @SuppressWarnings("unchecked")
-    Collection<JavaPackage> items = jdepend.getPackages();
-    for (JavaPackage item : items) {
-      res.add(new JDependDependency(item));
-    }
-    return new Dependencies(res);
+    return JDependDependency.toDependencies(jdepend.getPackages());
   }
 }
