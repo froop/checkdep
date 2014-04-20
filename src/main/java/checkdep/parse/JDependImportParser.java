@@ -38,6 +38,7 @@ public class JDependImportParser implements ImportParser {
     // TODO
     filter.addPackage("java.lang");
     filter.addPackage("java.util");
+    filter.addPackage("org.apache.commons.lang3");
     filter.addPackage("checkdep.util");
   }
 

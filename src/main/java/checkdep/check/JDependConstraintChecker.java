@@ -3,6 +3,7 @@ package checkdep.check;
 import java.util.LinkedHashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.TreeSet;
 
 import jdepend.framework.DependencyConstraint;
 import checkdep.common.JDependDependency;
@@ -21,7 +22,7 @@ public class JDependConstraintChecker implements ConstraintChecker {
 
   @Override
   public Violations check(Dependencies dependencies) {
-    Set<Violation> res = new LinkedHashSet<Violation>();
+    Set<Violation> res = new TreeSet<Violation>();
     Dependencies constraintDeps = toDependencies(createJDependConstraint());
     for (Dependency actual : dependencies.values()) {
       Optional<Dependency> expect = constraintDeps.get(actual.getName());

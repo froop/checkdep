@@ -26,22 +26,21 @@ public class CheckDepTest {
   @Test
   public void testExecute() {
     Constraints constraints = new Constraints(Arrays.asList(
-        new Constraint("checkdep.parse", "checkdep.value.depend"),
-        new Constraint("checkdep.parse", "jdepend.framework"),
-        new Constraint("checkdep.parse", "checkdep.common"),
-        new Constraint("checkdep.parse", "java.io"),
-        new Constraint("checkdep.common", "jdepend.framework"),
-        new Constraint("checkdep.common", "checkdep.value.depend"),
-        new Constraint("checkdep.value", "checkdep.value.depend"),
-        new Constraint("checkdep.value.violation", "checkdep.value.depend"),
-        new Constraint("checkdep.check", "checkdep.value.violation"),
-        new Constraint("checkdep.check", "checkdep.value.depend"),
-        new Constraint("checkdep.check", "jdepend.framework"),
-        new Constraint("checkdep.check", "checkdep.common"),
-        new Constraint("checkdep.check", "com.google.common.collect"),
-        new Constraint("checkdep", "checkdep.value.violation"),
         new Constraint("checkdep", "checkdep.check"),
-        new Constraint("checkdep", "checkdep.parse")));
+        new Constraint("checkdep", "checkdep.value.violation"),
+        new Constraint("checkdep", "checkdep.parse"),
+        new Constraint("checkdep.check", "checkdep.common"),
+        new Constraint("checkdep.check", "checkdep.value.depend"),
+        new Constraint("checkdep.check", "checkdep.value.violation"),
+        new Constraint("checkdep.check", "com.google.common.collect"),
+        new Constraint("checkdep.check", "jdepend.framework"),
+        new Constraint("checkdep.common", "checkdep.value.depend"),
+        new Constraint("checkdep.common", "jdepend.framework"),
+        new Constraint("checkdep.parse", "checkdep.common"),
+        new Constraint("checkdep.parse", "checkdep.value.depend"),
+        new Constraint("checkdep.parse", "java.io"),
+        new Constraint("checkdep.parse", "jdepend.framework"),
+        new Constraint("checkdep.value.violation", "checkdep.value.depend")));
     CheckDep target = new CheckDep(
         new JDependImportParser(new SourceDirectories(), new Filter()),
         new JDependConstraintChecker(constraints));
