@@ -3,23 +3,23 @@ package checkdep.check;
 import checkdep.value.depend.PackageName;
 
 public class Constraint {
-  private final PackageName afferent;
-  private final PackageName efferent;
+  private final PackageName from;
+  private final PackageName to;
 
-  public Constraint(PackageName afferent, PackageName efferent) {
-    this.afferent = afferent;
-    this.efferent = efferent;
+  public Constraint(PackageName from, PackageName to) {
+    this.from = from;
+    this.to = to;
   }
 
-  public Constraint(String afferent, String efferent) {
-    this(new PackageName(afferent), new PackageName(efferent));
+  public Constraint(String from, String to) {
+    this(new PackageName(from), new PackageName(to));
   }
 
-  public PackageName getAfferent() {
-    return afferent;
+  public PackageName getFrom() {
+    return from;
   }
 
-  public PackageName getEfferent() {
-    return efferent;
+  public PackageName getTo() {
+    return to;
   }
 }
