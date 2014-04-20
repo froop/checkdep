@@ -14,7 +14,7 @@ public class DependenciesTest {
   @Test
   public void testIterator() {
     List<Dependency> list = Arrays.asList(
-        new Dependency("test1"), new Dependency("test2"));
+        new DependencyStub("test1"), new DependencyStub("test2"));
 
     Dependencies target = new Dependencies(list);
 
@@ -22,5 +22,18 @@ public class DependenciesTest {
     assertThat(it.next().getName(), is("test1"));
     assertThat(it.next().getName(), is("test2"));
     assertFalse(it.hasNext());
+  }
+
+  private static class DependencyStub implements Dependency {
+    private final String name;
+
+    public DependencyStub(String name) {
+      this.name = name;
+    }
+
+    @Override
+    public String getName() {
+      return name;
+    }
   }
 }

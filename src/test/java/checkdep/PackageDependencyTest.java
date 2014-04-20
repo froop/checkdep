@@ -26,6 +26,8 @@ public class PackageDependencyTest {
 //    addDep(constraint, "checkdep", "checkdep.value.violation");
     addDep(constraint, "checkdep", "checkdep.parse");
 //    addDep(constraint, "checkdep", "checkdep.check");
+    addDep(constraint, "checkdep.parse", "java.io");
+    addDep(constraint, "checkdep.parse", "jdepend.framework");
     addDep(constraint, "checkdep.parse", "checkdep.value.depend");
 //    addDep(constraint, "checkdep.check", "checkdep.value.depend");
     addDep(constraint, "checkdep.check", "checkdep.value.violation");

@@ -1,4 +1,4 @@
-package checkdep;
+package checkdep.check;
 
 public class DependConstraint {
 
