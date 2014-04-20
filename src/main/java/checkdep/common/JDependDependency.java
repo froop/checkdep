@@ -1,9 +1,7 @@
 package checkdep.common;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 import jdepend.framework.JavaPackage;
@@ -35,7 +33,7 @@ public class JDependDependency implements Dependency {
   }
 
   public static Dependencies toDependencies(Collection<JavaPackage> packages) {
-    List<Dependency> res = new ArrayList<Dependency>();
+    Set<Dependency> res = new LinkedHashSet<Dependency>();
     for (JavaPackage item : packages) {
       res.add(new JDependDependency(item));
     }
