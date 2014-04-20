@@ -1,9 +1,9 @@
-package checkdep.parse;
+package checkdep.common;
 
 import jdepend.framework.JavaPackage;
 import checkdep.value.depend.Dependency;
 
-class JDependDependency implements Dependency {
+public class JDependDependency implements Dependency {
   private final JavaPackage raw;
 
   public JDependDependency(JavaPackage raw) {

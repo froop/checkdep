@@ -8,6 +8,7 @@ import java.util.List;
 import jdepend.framework.JDepend;
 import jdepend.framework.JavaPackage;
 import jdepend.framework.PackageFilter;
+import checkdep.common.JDependDependency;
 import checkdep.value.depend.Dependencies;
 import checkdep.value.depend.Dependency;
 
