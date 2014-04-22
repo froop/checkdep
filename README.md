@@ -1,5 +1,7 @@
-CheckDep (Check Dependency of Java Packages)
+CheckDep (Check Dependency)
 ====================
+
+Dependency Checker for Java Packages.
 
 Javaのパッケージ間の依存性を検証し、可視性制約を擬似的に実現するツール。JUnit等の自動テストから使用されることを想定。
 
@@ -13,12 +15,12 @@ Javaは、クラスに対しては可視性(public/protected/package)を指定�
 
 また、下記のようなパッケージ依存関係の制約がコード内では表現できず、コンパイルで検出できないため、
 意図しない依存関係ができてしまうことがあった。
-OK: A -> B -> C
-NG: A -> C
-NG: B -> A
+* OK: A -> B -> C
+* NG: A -> C
+* NG: B -> A
 
 パッケージ依存性に関するメトリクスツールである JDepend (http://clarkware.com/software/JDepend.html) には、
-その検出を意図したメソッドがあるにはあるが (JDepend#dependencyMatch())、
+その検出を意図した機能が一応あるが (JDepend#dependencyMatch())、
 プロジェクト全体についてのbooleanしか返さず、具体的にどの依存性に違反があるのかが取れないため使いづらい。
 
 
