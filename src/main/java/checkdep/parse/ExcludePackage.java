@@ -6,13 +6,13 @@ import checkdep.util.ValueBase;
  * 除外するパッケージ.
  */
 public class ExcludePackage extends ValueBase {
-  private final String raw;
+  private final String value;
 
-  public ExcludePackage(String raw) {
-    this.raw = raw;
+  public ExcludePackage(String value) {
+    this.value = value;
   }
 
-  public String getRaw() {
-    return raw;
+  public String getValue() {
+    return value;
   }
 }

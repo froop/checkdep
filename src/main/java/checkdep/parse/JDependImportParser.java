@@ -28,7 +28,7 @@ public class JDependImportParser implements ImportParser {
   private void setup(JDepend jdepend) {
     try {
       for (SourceDirectory item : source) {
-        jdepend.addDirectory(item.getRaw());
+        jdepend.addDirectory(item.getValue());
       }
     } catch (IOException e) {
       throw new IllegalStateException(e);
@@ -37,7 +37,7 @@ public class JDependImportParser implements ImportParser {
 
   private void setup(PackageFilter filter) {
     for (ExcludePackage item : exclude) {
-      filter.addPackage(item.getRaw());
+      filter.addPackage(item.getValue());
     }
   }
 
