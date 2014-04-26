@@ -2,13 +2,11 @@ package checkdep;
 
 import static org.junit.Assert.*;
 
-import java.util.Arrays;
 import java.util.Iterator;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import checkdep.check.Constraint;
 import checkdep.check.Constraints;
 import checkdep.check.JDependConstraintChecker;
 import checkdep.parse.ExcludePackages;
@@ -25,22 +23,23 @@ public class CheckDepTest {
 
   @Test
   public void testExecute() {
-    Constraints constraints = new Constraints(Arrays.asList(
-        new Constraint("checkdep", "checkdep.check"),
-        new Constraint("checkdep", "checkdep.value.violation"),
-        new Constraint("checkdep", "checkdep.parse"),
-        new Constraint("checkdep.check", "checkdep.common"),
-        new Constraint("checkdep.check", "checkdep.value.depend"),
-        new Constraint("checkdep.check", "checkdep.value.violation"),
-        new Constraint("checkdep.check", "com.google.common.collect"),
-        new Constraint("checkdep.check", "jdepend.framework"),
-        new Constraint("checkdep.common", "checkdep.value.depend"),
-        new Constraint("checkdep.common", "jdepend.framework"),
-        new Constraint("checkdep.parse", "checkdep.common"),
-        new Constraint("checkdep.parse", "checkdep.value.depend"),
-        new Constraint("checkdep.parse", "java.io"),
-        new Constraint("checkdep.parse", "jdepend.framework"),
-        new Constraint("checkdep.value.violation", "checkdep.value.depend")));
+    Constraints constraints = new Constraints.Builder()
+        .add("checkdep", "checkdep.check")
+        .add("checkdep", "checkdep.value.violation")
+        .add("checkdep", "checkdep.parse")
+        .add("checkdep.check", "checkdep.common")
+        .add("checkdep.check", "checkdep.value.depend")
+        .add("checkdep.check", "checkdep.value.violation")
+        .add("checkdep.check", "com.google.common.collect")
+        .add("checkdep.check", "jdepend.framework")
+        .add("checkdep.common", "checkdep.value.depend")
+        .add("checkdep.common", "jdepend.framework")
+        .add("checkdep.parse", "checkdep.common")
+        .add("checkdep.parse", "checkdep.value.depend")
+        .add("checkdep.parse", "java.io")
+        .add("checkdep.parse", "jdepend.framework")
+        .add("checkdep.value.violation", "checkdep.value.depend")
+        .build();
     CheckDep target = new CheckDep(
         new JDependImportParser(
             SourceDirectories.of(
