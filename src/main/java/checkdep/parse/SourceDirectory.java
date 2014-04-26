@@ -7,13 +7,13 @@ import checkdep.util.ValueBase;
  * 解析するclasspath.
  */
 public class SourceDirectory extends ValueBase {
-  private final String directory;
+  private final String raw;
 
-  public SourceDirectory(String directory) {
-    this.directory = directory;
+  public SourceDirectory(String raw) {
+    this.raw = raw;
   }
 
-  public String getDirectory() {
-    return directory;
+  public String getRaw() {
+    return raw;
   }
 }

@@ -14,7 +14,7 @@ public class SourceDirectories extends CollectionBase<SourceDirectory> {
   }
 
   public static SourceDirectories of(Collection<String> directories) {
-    List<SourceDirectory> target = new ArrayList<SourceDirectory>();
+    List<SourceDirectory> target = new ArrayList<>();
     for (String item : directories) {
       target.add(new SourceDirectory(item));
     }
