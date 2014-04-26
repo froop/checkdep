@@ -9,11 +9,11 @@ import checkdep.value.depend.Dependencies;
 
 public class JDependImportParser implements ImportParser {
   private final SourceDirectories source;
-  private final Filter filter;
+  private final ExcludePackages exclude;
 
-  public JDependImportParser(SourceDirectories source, Filter filter) {
+  public JDependImportParser(SourceDirectories source, ExcludePackages exclude) {
     this.source = source;
-    this.filter = filter;
+    this.exclude = exclude;
   }
 
   @Override
@@ -28,7 +28,7 @@ public class JDependImportParser implements ImportParser {
   private void setup(JDepend jdepend) {
     try {
       for (SourceDirectory item : source) {
-        jdepend.addDirectory(item.getDirectory());
+        jdepend.addDirectory(item.getRaw());
       }
     } catch (IOException e) {
       throw new IllegalStateException(e);
@@ -36,11 +36,9 @@ public class JDependImportParser implements ImportParser {
   }
 
   private void setup(PackageFilter filter) {
-    // TODO
-    filter.addPackage("java.lang");
-    filter.addPackage("java.util");
-    filter.addPackage("org.apache.commons.lang3");
-    filter.addPackage("checkdep.util");
+    for (ExcludePackage item : exclude) {
+      filter.addPackage(item.getRaw());
+    }
   }
 
   @SuppressWarnings("unchecked")

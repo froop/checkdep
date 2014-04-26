@@ -11,7 +11,7 @@ import org.junit.Test;
 import checkdep.check.Constraint;
 import checkdep.check.Constraints;
 import checkdep.check.JDependConstraintChecker;
-import checkdep.parse.Filter;
+import checkdep.parse.ExcludePackages;
 import checkdep.parse.JDependImportParser;
 import checkdep.parse.SourceDirectories;
 import checkdep.value.violation.Violation;
@@ -42,12 +42,19 @@ public class CheckDepTest {
         new Constraint("checkdep.parse", "jdepend.framework"),
         new Constraint("checkdep.value.violation", "checkdep.value.depend")));
     CheckDep target = new CheckDep(
-        new JDependImportParser(SourceDirectories.of("target/classes"), new Filter()),
-        new JDependConstraintChecker(constraints));
+        new JDependImportParser(
+            SourceDirectories.of(
+                "target/classes"),
+            ExcludePackages.of(
+                "java.lang",
+                "java.util",
+                "org.apache.commons.lang3",
+                "checkdep.util")),
+            new JDependConstraintChecker(constraints));
 
     Violations res = target.execute();
 
     Iterator<Violation> it = res.iterator();
-    assertFalse(it.hasNext());
+    assertFalse(res.toString(), it.hasNext());
   }
 }
