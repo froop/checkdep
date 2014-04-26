@@ -42,7 +42,7 @@ public class CheckDepTest {
         new Constraint("checkdep.parse", "jdepend.framework"),
         new Constraint("checkdep.value.violation", "checkdep.value.depend")));
     CheckDep target = new CheckDep(
-        new JDependImportParser(new SourceDirectories(), new Filter()),
+        new JDependImportParser(SourceDirectories.of("target/classes"), new Filter()),
         new JDependConstraintChecker(constraints));
 
     Violations res = target.execute();

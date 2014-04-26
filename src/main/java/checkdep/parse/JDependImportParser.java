@@ -27,8 +27,9 @@ public class JDependImportParser implements ImportParser {
 
   private void setup(JDepend jdepend) {
     try {
-      // TODO
-      jdepend.addDirectory("target/classes");
+      for (SourceDirectory item : source) {
+        jdepend.addDirectory(item.getDirectory());
+      }
     } catch (IOException e) {
       throw new IllegalStateException(e);
     }
