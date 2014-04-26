@@ -23,7 +23,7 @@ public class CheckDepTest {
 
   @Test
   public void testExecute() {
-    Constraints constraints = new Constraints.Builder()
+    Constraints constraints = Constraints.builder()
         .add("checkdep", "checkdep.check")
         .add("checkdep", "checkdep.value.violation")
         .add("checkdep", "checkdep.parse")
