@@ -6,12 +6,12 @@ public class DependArrow extends ValueBase {
   private final PackageName from;
   private final PackageName to;
 
-  public DependArrow(PackageName from, PackageName to) {
+  protected DependArrow(PackageName from, PackageName to) {
     this.from = from;
     this.to = to;
   }
 
-  public DependArrow(String from, String to) {
+  protected DependArrow(String from, String to) {
     this(new PackageName(from), new PackageName(to));
   }
 

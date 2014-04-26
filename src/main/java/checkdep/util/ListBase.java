@@ -8,7 +8,7 @@ import com.google.common.collect.ImmutableList;
 public abstract class ListBase<E> extends ValueBase implements Iterable<E> {
   private final ImmutableList<E> list;
 
-  public ListBase(Collection<E> list) {
+  protected ListBase(Collection<E> list) {
     this.list = new ImmutableList.Builder<E>().addAll(list).build();
   }
 
