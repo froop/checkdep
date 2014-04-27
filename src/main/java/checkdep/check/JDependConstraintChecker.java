@@ -23,6 +23,10 @@ public class JDependConstraintChecker implements ConstraintChecker {
   @Override
   public Violations check(Dependencies dependencies) {
     Dependencies constraintDeps = toDependencies(createJDependConstraint());
+    Set<Violation> needlessSet = check(constraintDeps, dependencies);
+    if (!needlessSet.isEmpty()) {
+      throw new NeedlessConstraintException(needlessSet.toString());
+    }
     return new Violations(check(dependencies, constraintDeps));
   }
 
