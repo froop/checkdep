@@ -2,8 +2,6 @@ package checkdep;
 
 import static org.junit.Assert.*;
 
-import java.util.Iterator;
-
 import org.junit.Test;
 
 import checkdep.check.Constraints;
@@ -11,7 +9,6 @@ import checkdep.check.JDependConstraintChecker;
 import checkdep.parse.ExcludePackages;
 import checkdep.parse.JDependImportParser;
 import checkdep.parse.SourceDirectories;
-import checkdep.value.violation.Violation;
 import checkdep.value.violation.Violations;
 
 public class CheckDepTest {
@@ -48,7 +45,6 @@ public class CheckDepTest {
 
     Violations res = target.execute();
 
-    Iterator<Violation> it = res.iterator();
-    assertFalse(res.toString(), it.hasNext());
+    assertTrue(res.toString(), res.isEmpty());
   }
 }
