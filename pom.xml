@@ -4,11 +4,11 @@
 
   <groupId>checkdep</groupId>
   <artifactId>checkdep</artifactId>
-  <version>0.0.1</version>
+  <version>0.1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkdep</name>
-  <url>http://maven.apache.org</url>
+  <url>https://github.com/froop/checkdep</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
