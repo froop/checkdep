@@ -1,7 +1,6 @@
 package checkdep.check;
 
 import java.util.LinkedHashSet;
-import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -33,20 +32,10 @@ public class JDependConstraintChecker implements ConstraintChecker {
   private Set<Violation> check(Dependencies actualDeps, Dependencies expectDeps) {
     Set<Violation> res = new TreeSet<>();
     for (Dependency actual : actualDeps.values()) {
-      res.addAll(checkEfferents(actual, expectDeps.get(actual.getName())));
+      res.addAll(checkEfferents(actual,
+          expectDeps.get(actual.getName()).orElse(Dependency.NULL)));
     }
     return res;
-  }
-
-  private Set<Violation> checkEfferents(Dependency actual,
-      Optional<Dependency> expect) {
-    Dependency dep;
-    if (expect.isPresent()) {
-      dep = expect.get();
-    } else {
-      dep = Dependency.NULL;
-    }
-    return checkEfferents(actual, dep);
   }
 
   private Set<Violation> checkEfferents(Dependency actual, Dependency expect) {
