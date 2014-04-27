@@ -1,8 +1,8 @@
 package checkdep.check;
 
-import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 import jdepend.framework.DependencyConstraint;
 import checkdep.common.JDependDependency;
@@ -39,13 +39,10 @@ public class JDependConstraintChecker implements ConstraintChecker {
   }
 
   private Set<Violation> checkEfferents(Dependency actual, Dependency expect) {
-    Set<Violation> res = new LinkedHashSet<>();
-    for (PackageName efferent : actual.getEfferents()) {
-      if (!expect.getEfferents().contains(efferent)) {
-        res.add(new Violation(actual.getName(), efferent));
-      }
-    }
-    return res;
+    return actual.getEfferents().stream()
+        .filter(efferent -> !expect.getEfferents().contains(efferent))
+        .map(efferent -> new Violation(actual.getName(), efferent))
+        .collect(Collectors.toSet());
   }
 
   private DependencyConstraint createJDependConstraint() {
