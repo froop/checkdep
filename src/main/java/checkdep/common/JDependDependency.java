@@ -23,7 +23,7 @@ public class JDependDependency implements Dependency, Comparable<Dependency> {
 
   @Override
   public Set<PackageName> getEfferents() {
-    Set<PackageName> res = new LinkedHashSet<PackageName>();
+    Set<PackageName> res = new LinkedHashSet<>();
     @SuppressWarnings("unchecked")
     Collection<JavaPackage> efferents = raw.getEfferents();
     for (JavaPackage efferent : efferents) {
@@ -33,7 +33,7 @@ public class JDependDependency implements Dependency, Comparable<Dependency> {
   }
 
   public static Dependencies toDependencies(Collection<JavaPackage> packages) {
-    Set<Dependency> res = new LinkedHashSet<Dependency>();
+    Set<Dependency> res = new LinkedHashSet<>();
     for (JavaPackage item : packages) {
       res.add(new JDependDependency(item));
     }

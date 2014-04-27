@@ -9,7 +9,7 @@ import checkdep.util.MapBase;
 public class Dependencies extends MapBase<PackageName, Dependency> {
 
   public static Dependencies of(Collection<Dependency> list) {
-    Map<PackageName, Dependency> map = new LinkedHashMap<PackageName, Dependency>();
+    Map<PackageName, Dependency> map = new LinkedHashMap<>();
     for (Dependency item : list) {
       map.put(item.getName(), item);
     }

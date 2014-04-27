@@ -22,7 +22,7 @@ public class JDependConstraintChecker implements ConstraintChecker {
 
   @Override
   public Violations check(Dependencies dependencies) {
-    Set<Violation> res = new TreeSet<Violation>();
+    Set<Violation> res = new TreeSet<>();
     Dependencies constraintDeps = toDependencies(createJDependConstraint());
     for (Dependency actual : dependencies.values()) {
       Optional<Dependency> expect = constraintDeps.get(actual.getName());
@@ -36,7 +36,7 @@ public class JDependConstraintChecker implements ConstraintChecker {
   }
 
   private Set<Violation> checkEfferents(Dependency actual, Dependency expect) {
-    Set<Violation> res = new LinkedHashSet<Violation>();
+    Set<Violation> res = new LinkedHashSet<>();
     for (PackageName efferent : actual.getEfferents()) {
       if (!expect.getEfferents().contains(efferent)) {
         res.add(new Violation(actual.getName(), efferent));
@@ -46,7 +46,7 @@ public class JDependConstraintChecker implements ConstraintChecker {
   }
 
   private Set<Violation> toViolations(Dependency item) {
-    Set<Violation> res = new LinkedHashSet<Violation>();
+    Set<Violation> res = new LinkedHashSet<>();
     for (PackageName efferent : item.getEfferents()) {
       res.add(new Violation(item.getName(), efferent));
     }

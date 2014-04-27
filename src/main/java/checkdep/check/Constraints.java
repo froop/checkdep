@@ -13,7 +13,7 @@ public class Constraints extends CollectionBase<Constraint> {
   }
 
   public static class Builder {
-    private final Set<Constraint> set = new LinkedHashSet<Constraint>();
+    private final Set<Constraint> set = new LinkedHashSet<>();
 
     public Builder add(String from, String to) {
       set.add(new Constraint(from, to));
