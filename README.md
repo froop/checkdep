@@ -1,7 +1,7 @@
 CheckDep (Check Dependency)
 ====================
 
-Dependency Checker for Java Packages.
+A Java package dependency checker.
 
 Javaのパッケージ間の依存性を検証し、可視性制約を擬似的に実現するツール。JUnit等の自動テストから使用されることを想定。
 
@@ -34,9 +34,9 @@ Javaコードの解析はJDependを利用し、依存性の検証のみを独自
 --------------------
 
 * Java SE 8
-* JDepend (http://clarkware.com/software/JDepend.html)
-* Google Guava (http://code.google.com/p/guava-libraries/)
-* Apache Commons Lang 3 (http://commons.apache.org/proper/commons-lang/)
+* JDepend 2.9 (http://clarkware.com/software/JDepend.html)
+* Google Guava 17 (http://code.google.com/p/guava-libraries/)
+* Apache Commons Lang 3.3 (http://commons.apache.org/proper/commons-lang/)
 
 
 個人的開発理由
@@ -44,4 +44,4 @@ Javaコードの解析はJDependを利用し、依存性の検証のみを独自
 
 * Java 8 を使ってみる。関数型に興味。Stream API とか便利そう。
 * Apache Maven を使ってみる。ビルドツールはAntしか使ってなかったので。
-* Google Guava ライブラリを使ってみる。ImmutableCollection目当て。Apache Commons Lang を置換？
+* Google Guava ライブラリを使ってみる。ImmutableCollection目当て
