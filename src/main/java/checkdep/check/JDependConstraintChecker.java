@@ -33,11 +33,20 @@ public class JDependConstraintChecker implements ConstraintChecker {
   private Set<Violation> check(Dependencies actualDeps, Dependencies expectDeps) {
     Set<Violation> res = new TreeSet<>();
     for (Dependency actual : actualDeps.values()) {
-      Optional<Dependency> expect = expectDeps.get(actual.getName());
-      res.addAll(checkEfferents(actual,
-          expect.isPresent() ? expect.get() : Dependency.NULL));
+      res.addAll(checkEfferents(actual, expectDeps.get(actual.getName())));
     }
     return res;
+  }
+
+  private Set<Violation> checkEfferents(Dependency actual,
+      Optional<Dependency> expect) {
+    Dependency dep;
+    if (expect.isPresent()) {
+      dep = expect.get();
+    } else {
+      dep = Dependency.NULL;
+    }
+    return checkEfferents(actual, dep);
   }
 
   private Set<Violation> checkEfferents(Dependency actual, Dependency expect) {
