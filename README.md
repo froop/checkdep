@@ -33,4 +33,15 @@ Javaコードの解析はJDependを利用し、依存性の検証のみを独自
 前提環境
 --------------------
 
-Java 8
+* Java SE 8
+* JDepend (http://clarkware.com/software/JDepend.html)
+* Google Guava (http://code.google.com/p/guava-libraries/)
+* Apache Commons Lang 3 (http://commons.apache.org/proper/commons-lang/)
+
+
+個人的開発理由
+--------------------
+
+* Java 8 を使ってみる。関数型に興味。Stream API とか便利そう。
+* Apache Maven を使ってみる。ビルドツールはAntしか使ってなかったので。
+* Google Guava ライブラリを使ってみる。ImmutableCollection目当て。Apache Commons Lang を置換？
