@@ -34,11 +34,8 @@ public class JDependConstraintChecker implements ConstraintChecker {
     Set<Violation> res = new TreeSet<>();
     for (Dependency actual : actualDeps.values()) {
       Optional<Dependency> expect = expectDeps.get(actual.getName());
-      if (expect.isPresent()) {
-        res.addAll(checkEfferents(actual, expect.get()));
-      } else {
-        res.addAll(toViolations(actual));
-      }
+      res.addAll(checkEfferents(actual,
+          expect.isPresent() ? expect.get() : Dependency.NULL));
     }
     return res;
   }
@@ -49,14 +46,6 @@ public class JDependConstraintChecker implements ConstraintChecker {
       if (!expect.getEfferents().contains(efferent)) {
         res.add(new Violation(actual.getName(), efferent));
       }
-    }
-    return res;
-  }
-
-  private Set<Violation> toViolations(Dependency item) {
-    Set<Violation> res = new LinkedHashSet<>();
-    for (PackageName efferent : item.getEfferents()) {
-      res.add(new Violation(item.getName(), efferent));
     }
     return res;
   }

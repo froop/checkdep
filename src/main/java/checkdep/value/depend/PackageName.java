@@ -3,6 +3,8 @@ package checkdep.value.depend;
 import checkdep.util.ValueBase;
 
 public class PackageName extends ValueBase implements Comparable<PackageName> {
+  public static final PackageName NULL = new PackageName("");
+
   private final String value;
 
   public PackageName(String value) {
