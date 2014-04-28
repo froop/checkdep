@@ -26,19 +26,19 @@ public class JDependImportParser implements ImportParser {
   }
 
   private void setup(JDepend jdepend) {
+    source.forEach(item -> setup(jdepend, item));
+  }
+
+  private void setup(JDepend jdepend, SourceDirectory directory) {
     try {
-      for (SourceDirectory item : source) {
-        jdepend.addDirectory(item.getValue());
-      }
+      jdepend.addDirectory(directory.getValue());
     } catch (IOException e) {
       throw new IllegalStateException(e);
     }
   }
 
   private void setup(PackageFilter filter) {
-    for (ExcludePackage item : exclude) {
-      filter.addPackage(item.getValue());
-    }
+    exclude.forEach(item -> filter.addPackage(item.getValue()));
   }
 
   @SuppressWarnings("unchecked")
