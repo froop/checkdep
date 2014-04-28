@@ -10,9 +10,7 @@ public class Dependencies extends MapBase<PackageName, Dependency> {
 
   public static Dependencies of(Collection<Dependency> collection) {
     Map<PackageName, Dependency> map = new LinkedHashMap<>();
-    for (Dependency item : collection) {
-      map.put(item.getName(), item);
-    }
+    collection.forEach(item -> map.put(item.getName(), item));
     return new Dependencies(map);
   }
 
