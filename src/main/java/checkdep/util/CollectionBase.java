@@ -2,6 +2,7 @@ package checkdep.util;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.stream.Stream;
 
 import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableList;
@@ -24,5 +25,9 @@ public abstract class CollectionBase<E> extends ValueBase implements Iterable<E>
 
   public boolean isEmpty() {
     return raw.isEmpty();
+  }
+
+  public Stream<E> stream() {
+    return raw.stream();
   }
 }

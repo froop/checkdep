@@ -45,12 +45,12 @@ public class JDependConstraintChecker implements ConstraintChecker {
 
   private DependencyConstraint createJDependConstraint() {
     DependencyConstraint constraint = new DependencyConstraint();
-    for (Constraint item : constraints) {
+    constraints.forEach(item -> {
       PackageName from = item.getFrom();
       PackageName to = item.getTo();
       constraint.addPackage(from.getValue()).dependsUpon(
           constraint.addPackage(to.getValue()));
-    }
+    });
     return constraint;
   }
 
