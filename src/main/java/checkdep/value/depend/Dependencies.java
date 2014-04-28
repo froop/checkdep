@@ -8,15 +8,15 @@ import checkdep.util.MapBase;
 
 public class Dependencies extends MapBase<PackageName, Dependency> {
 
-  public static Dependencies of(Collection<Dependency> list) {
+  public static Dependencies of(Collection<Dependency> collection) {
     Map<PackageName, Dependency> map = new LinkedHashMap<>();
-    for (Dependency item : list) {
+    for (Dependency item : collection) {
       map.put(item.getName(), item);
     }
     return new Dependencies(map);
   }
 
-  public Dependencies(Map<PackageName, Dependency> map) {
+  private Dependencies(Map<PackageName, Dependency> map) {
     super(map);
   }
 }
