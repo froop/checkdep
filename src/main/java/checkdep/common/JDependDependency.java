@@ -1,7 +1,6 @@
 package checkdep.common;
 
 import java.util.Collection;
-import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -24,13 +23,11 @@ public class JDependDependency implements Dependency, Comparable<Dependency> {
 
   @Override
   public Set<PackageName> getEfferents() {
-    Set<PackageName> res = new LinkedHashSet<>();
     @SuppressWarnings("unchecked")
     Collection<JavaPackage> efferents = raw.getEfferents();
-    for (JavaPackage efferent : efferents) {
-      res.add(new PackageName(efferent.getName()));
-    }
-    return res;
+    return efferents.stream()
+        .map(efferent -> new PackageName(efferent.getName()))
+        .collect(Collectors.toSet());
   }
 
   public static Dependencies toDependencies(Collection<JavaPackage> packages) {
