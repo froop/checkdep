@@ -3,6 +3,7 @@ package checkdep.common;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import jdepend.framework.JavaPackage;
 import checkdep.value.depend.Dependencies;
@@ -33,11 +34,9 @@ public class JDependDependency implements Dependency, Comparable<Dependency> {
   }
 
   public static Dependencies toDependencies(Collection<JavaPackage> packages) {
-    Set<Dependency> res = new LinkedHashSet<>();
-    for (JavaPackage item : packages) {
-      res.add(new JDependDependency(item));
-    }
-    return Dependencies.of(res);
+    return Dependencies.of(packages.stream()
+        .map(item -> new JDependDependency(item))
+        .collect(Collectors.toSet()));
   }
 
   @Override
