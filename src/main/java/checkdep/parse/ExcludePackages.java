@@ -9,11 +9,7 @@ import checkdep.util.CollectionBase;
 public class ExcludePackages extends CollectionBase<ExcludePackage> {
 
   public static ExcludePackages of(String... directory) {
-    return ExcludePackages.of(Arrays.asList(directory));
-  }
-
-  public static ExcludePackages of(Collection<String> strings) {
-    return new ExcludePackages(strings.stream()
+    return new ExcludePackages(Arrays.stream(directory)
         .map(item -> new ExcludePackage(item))
         .collect(Collectors.toSet()));
   }
