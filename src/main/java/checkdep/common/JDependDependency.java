@@ -23,11 +23,14 @@ public class JDependDependency implements Dependency, Comparable<Dependency> {
 
   @Override
   public Set<PackageName> getEfferents() {
-    @SuppressWarnings("unchecked")
-    Collection<JavaPackage> efferents = raw.getEfferents();
-    return efferents.stream()
+    return getRawEfferents().stream()
         .map(efferent -> new PackageName(efferent.getName()))
         .collect(Collectors.toSet());
+  }
+
+  @SuppressWarnings("unchecked")
+  private Collection<JavaPackage> getRawEfferents() {
+    return raw.getEfferents();
   }
 
   public static Dependencies toDependencies(Collection<JavaPackage> packages) {
