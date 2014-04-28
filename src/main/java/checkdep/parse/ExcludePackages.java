@@ -2,10 +2,9 @@ package checkdep.parse;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import checkdep.util.CollectionBase;
+import checkdep.util.CollectionMapper;
 
 public class ExcludePackages extends CollectionBase<ExcludePackage> {
 
@@ -14,14 +13,13 @@ public class ExcludePackages extends CollectionBase<ExcludePackage> {
   }
 
   public static ExcludePackages of(Collection<String> strings) {
-    return new ExcludePackages(toExcludePackageSet(strings));
+    return new ExcludePackages(toParticular(strings));
   }
 
-  private static Set<ExcludePackage> toExcludePackageSet(
+  private static Collection<ExcludePackage> toParticular(
       Collection<String> strings) {
-    return strings.stream()
-        .map(item -> new ExcludePackage(item))
-        .collect(Collectors.toSet());
+    return new CollectionMapper<String, ExcludePackage>(strings)
+        .toSet(raw -> new ExcludePackage(raw));
   }
 
   private ExcludePackages(Collection<ExcludePackage> directories) {
