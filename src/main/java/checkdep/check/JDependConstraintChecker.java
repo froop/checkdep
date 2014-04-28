@@ -1,7 +1,6 @@
 package checkdep.check;
 
 import java.util.Set;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import jdepend.framework.DependencyConstraint;
@@ -30,12 +29,11 @@ public class JDependConstraintChecker implements ConstraintChecker {
   }
 
   private Set<Violation> check(Dependencies actualDeps, Dependencies expectDeps) {
-    Set<Violation> res = new TreeSet<>();
-    for (Dependency actual : actualDeps.values()) {
-      res.addAll(checkEfferents(actual,
-          expectDeps.get(actual.getName()).orElse(Dependency.NULL)));
-    }
-    return res;
+    return actualDeps.values().stream()
+        .flatMap(actual -> checkEfferents(actual,
+            expectDeps.get(actual.getName()).orElse(Dependency.NULL)).stream())
+        .sorted()
+        .collect(Collectors.toSet());
   }
 
   private Set<Violation> checkEfferents(Dependency actual, Dependency expect) {
