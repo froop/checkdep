@@ -17,9 +17,9 @@ public abstract class CollectionBase<E> extends ValueBase implements Iterable<E>
     this.raw = ImmutableList.copyOf(raw);
   }
 
-  public CollectionBase(String[] raw, Function<String, E> map) {
+  public CollectionBase(String[] raw, Function<String, E> mapper) {
     this(Arrays.stream(raw)
-        .map(map)
+        .map(mapper)
         .collect(Collectors.toList()));
   }
 
