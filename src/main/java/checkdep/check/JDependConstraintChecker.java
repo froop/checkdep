@@ -1,7 +1,8 @@
 package checkdep.check;
 
+import static java.util.stream.Collectors.*;
+
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import jdepend.framework.DependencyConstraint;
 import checkdep.common.JDependDependency;
@@ -33,14 +34,14 @@ public class JDependConstraintChecker implements ConstraintChecker {
         .flatMap(actual -> checkEfferents(actual,
             expectDeps.get(actual.getName()).orElse(Dependency.NULL)).stream())
         .sorted()
-        .collect(Collectors.toSet());
+        .collect(toSet());
   }
 
   private Set<Violation> checkEfferents(Dependency actual, Dependency expect) {
     return actual.getEfferents().stream()
         .filter(efferent -> !expect.getEfferents().contains(efferent))
         .map(efferent -> new Violation(actual.getName(), efferent))
-        .collect(Collectors.toSet());
+        .collect(toSet());
   }
 
   private DependencyConstraint createJDependConstraint() {

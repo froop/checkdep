@@ -1,8 +1,9 @@
 package checkdep.common;
 
+import static java.util.stream.Collectors.*;
+
 import java.util.Collection;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import jdepend.framework.JavaPackage;
 import checkdep.value.depend.Dependencies;
@@ -25,7 +26,7 @@ public class JDependDependency implements Dependency, Comparable<Dependency> {
   public Set<PackageName> getEfferents() {
     return getRawEfferents().stream()
         .map(efferent -> new PackageName(efferent.getName()))
-        .collect(Collectors.toSet());
+        .collect(toSet());
   }
 
   @SuppressWarnings("unchecked")
@@ -36,7 +37,7 @@ public class JDependDependency implements Dependency, Comparable<Dependency> {
   public static Dependencies toDependencies(Collection<JavaPackage> packages) {
     return Dependencies.of(packages.stream()
         .map(item -> new JDependDependency(item))
-        .collect(Collectors.toSet()));
+        .collect(toSet()));
   }
 
   @Override

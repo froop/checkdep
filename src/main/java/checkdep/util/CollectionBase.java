@@ -1,10 +1,11 @@
 package checkdep.util;
 
+import static java.util.stream.Collectors.*;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.google.common.collect.ImmutableCollection;
@@ -18,9 +19,7 @@ public abstract class CollectionBase<E> extends ValueBase implements Iterable<E>
   }
 
   public CollectionBase(String[] raw, Function<String, E> mapper) {
-    this(Arrays.stream(raw)
-        .map(mapper)
-        .collect(Collectors.toList()));
+    this(Arrays.stream(raw).map(mapper).collect(toList()));
   }
 
   @Override
