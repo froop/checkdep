@@ -53,7 +53,20 @@ public class JDependConstraintCheckerTest {
   }
 
   @Test
-  public void testCheck_SubPackageNotAllow() {
+  public void testCheck_SubPackageNotAllowFrom() {
+    Dependencies dependencies = Dependencies.of(Arrays.asList(
+        DependencyStub.of("checkdep", Arrays.asList("checkdep.check")),
+        DependencyStub.of("checkdep.a", Arrays.asList("checkdep.check"))));
+
+    Violations res = target.check(dependencies);
+
+    Iterator<Violation> it = res.iterator();
+    assertThat(it.next().toString(), is("checkdep.a -> checkdep.check"));
+    assertFalse(res.toString(), it.hasNext());
+  }
+
+  @Test
+  public void testCheck_SubPackageNotAllowTo() {
     Dependencies dependencies = Dependencies.of(Arrays.asList(
         DependencyStub.of("checkdep",
             Arrays.asList("checkdep.check", "checkdep.check.a"))));
@@ -81,6 +94,36 @@ public class JDependConstraintCheckerTest {
   }
 
   @Test
+  public void testCheck_WildcardFrom() {
+    target = new JDependConstraintChecker(Constraints.builder()
+        .add("checkdep.check.*", "checkdep.parse")
+        .build());
+    Dependencies dependencies = Dependencies.of(Arrays.asList(
+        DependencyStub.of("checkdep.check.a",
+            Arrays.asList("checkdep.parse"))));
+
+    Violations res = target.check(dependencies);
+
+    Iterator<Violation> it = res.iterator();
+    assertFalse(res.toString(), it.hasNext());
+  }
+
+  @Test
+  public void testCheck_WildcardFromTo() {
+    target = new JDependConstraintChecker(Constraints.builder()
+        .add("checkdep.check.*", "checkdep.parse.*")
+        .build());
+    Dependencies dependencies = Dependencies.of(Arrays.asList(
+        DependencyStub.of("checkdep.check.a",
+            Arrays.asList("checkdep.parse.a"))));
+
+    Violations res = target.check(dependencies);
+
+    Iterator<Violation> it = res.iterator();
+    assertFalse(res.toString(), it.hasNext());
+  }
+
+  @Test
   public void testCheck_NeedlessConstraint() {
     target = new JDependConstraintChecker(Constraints.builder()
         .add("a", "b")
@@ -96,6 +139,7 @@ public class JDependConstraintCheckerTest {
       assertThat(e.getMessage(), is("[1 -> 2, a -> b]"));
     }
   }
+
 
   private static class DependencyStub implements Dependency {
     private final PackageName name;

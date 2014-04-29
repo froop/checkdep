@@ -25,4 +25,8 @@ public class MapBase<K, V> extends ValueBase {
   public ImmutableCollection<V> values() {
     return map.values();
   }
+
+  public boolean isEmpty() {
+    return map.isEmpty();
+  }
 }

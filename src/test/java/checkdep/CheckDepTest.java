@@ -20,6 +20,7 @@ public class CheckDepTest {
             "java.lang",
             "java.util",
             "org.apache.commons.lang3",
+            "com.google.common.collect",
             "checkdep.util"),
         Constraints.builder()
             .add("checkdep", "checkdep.check")
@@ -28,7 +29,6 @@ public class CheckDepTest {
             .add("checkdep.check", "checkdep.common")
             .add("checkdep.check", "checkdep.value.depend")
             .add("checkdep.check", "checkdep.value.violation")
-            .add("checkdep.check", "com.google.common.collect")
             .add("checkdep.check", "jdepend.framework")
             .add("checkdep.common", "checkdep.value.depend")
             .add("checkdep.common", "jdepend.framework")

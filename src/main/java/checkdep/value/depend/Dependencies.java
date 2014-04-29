@@ -17,4 +17,10 @@ public class Dependencies extends MapBase<PackageName, Dependency> {
   private Dependencies(Map<PackageName, Dependency> map) {
     super(map);
   }
+
+  public Dependencies find(PackageName name) {
+    return Dependencies.of(values().stream()
+        .filter(item -> name.matches(item.getName()))
+        .collect(toSet()));
+  }
 }
