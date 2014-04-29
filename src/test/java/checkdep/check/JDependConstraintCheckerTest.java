@@ -54,6 +54,34 @@ public class JDependConstraintCheckerTest {
   }
 
   @Test
+  public void testCheck_SubPackageNotAllow() {
+    Dependencies dependencies = Dependencies.of(Arrays.asList(
+        DependencyStub.of("checkdep",
+            Arrays.asList("checkdep.check", "checkdep.check.a"))));
+
+    Violations res = target.check(dependencies);
+
+    Iterator<Violation> it = res.iterator();
+    assertThat(it.next().toString(), is("checkdep -> checkdep.check.a"));
+    assertFalse(res.toString(), it.hasNext());
+  }
+
+//  @Test
+//  public void testCheck_SubPackageAllow() {
+//    target = new JDependConstraintChecker(Constraints.builder()
+//        .add("checkdep", "checkdep.check.*")
+//        .build());
+//    Dependencies dependencies = Dependencies.of(Arrays.asList(
+//        DependencyStub.of("checkdep",
+//            Arrays.asList("checkdep.check", "checkdep.check.a"))));
+//
+//    Violations res = target.check(dependencies);
+//
+//    Iterator<Violation> it = res.iterator();
+//    assertFalse(res.toString(), it.hasNext());
+//  }
+
+  @Test
   public void testCheck_NeedlessConstraint() {
     target = new JDependConstraintChecker(Constraints.builder()
         .add("a", "b")
