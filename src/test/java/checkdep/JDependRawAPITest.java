@@ -8,10 +8,12 @@ import jdepend.framework.DependencyConstraint;
 import jdepend.framework.JDepend;
 import jdepend.framework.PackageFilter;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class JDependRawAPITest {
 
+  @Ignore
   @Test
   public void test() throws IOException {
     JDepend jdepend = new JDepend();

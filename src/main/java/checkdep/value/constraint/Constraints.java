@@ -1,4 +1,4 @@
-package checkdep.check;
+package checkdep.value.constraint;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;

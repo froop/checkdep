@@ -6,6 +6,7 @@ import java.util.Set;
 
 import jdepend.framework.DependencyConstraint;
 import checkdep.common.JDependDependency;
+import checkdep.value.constraint.Constraints;
 import checkdep.value.depend.Dependencies;
 import checkdep.value.depend.Dependency;
 import checkdep.value.depend.PackageName;

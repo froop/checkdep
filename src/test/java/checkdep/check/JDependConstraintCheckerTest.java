@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import org.junit.Before;
 import org.junit.Test;
 
+import checkdep.value.constraint.Constraints;
 import checkdep.value.depend.Dependencies;
 import checkdep.value.depend.Dependency;
 import checkdep.value.depend.PackageName;

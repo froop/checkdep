@@ -1,4 +1,4 @@
-package checkdep.check;
+package checkdep.value.constraint;
 
 import checkdep.value.depend.DependArrow;
 import checkdep.value.depend.PackageName;
