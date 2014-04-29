@@ -5,8 +5,8 @@ import checkdep.check.JDependConstraintChecker;
 import checkdep.parse.ExcludePackages;
 import checkdep.parse.ImportParser;
 import checkdep.parse.JDependImportParser;
-import checkdep.parse.SourceDirectories;
 import checkdep.value.constraint.Constraints;
+import checkdep.value.source.SourceDirectories;
 import checkdep.value.violation.Violations;
 
 public class CheckDep {
