@@ -11,7 +11,7 @@ public class MapBase<K, V> extends ValueBase {
   private final ImmutableMap<K, V> map;
 
   protected MapBase(Map<K, V> map) {
-    this.map = new ImmutableMap.Builder<K, V>().putAll(map).build();
+    this.map = ImmutableMap.copyOf(map);
   }
 
   public Optional<V> get(K key) {
