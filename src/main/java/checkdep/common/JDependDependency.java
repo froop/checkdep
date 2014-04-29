@@ -3,12 +3,12 @@ package checkdep.common;
 import static java.util.stream.Collectors.*;
 
 import java.util.Collection;
-import java.util.Set;
 
 import jdepend.framework.JavaPackage;
 import checkdep.value.depend.Dependencies;
 import checkdep.value.depend.Dependency;
 import checkdep.value.depend.PackageName;
+import checkdep.value.depend.PackageNames;
 
 public class JDependDependency implements Dependency, Comparable<Dependency> {
   private final JavaPackage raw;
@@ -23,10 +23,10 @@ public class JDependDependency implements Dependency, Comparable<Dependency> {
   }
 
   @Override
-  public Set<PackageName> getEfferents() {
-    return getRawEfferents().stream()
+  public PackageNames getEfferents() {
+    return new PackageNames(getRawEfferents().stream()
         .map(item -> new PackageName(item.getName()))
-        .collect(toSet());
+        .collect(toSet()));
   }
 
   @SuppressWarnings("unchecked")

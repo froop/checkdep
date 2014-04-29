@@ -9,6 +9,7 @@ import checkdep.common.JDependDependency;
 import checkdep.value.depend.Dependencies;
 import checkdep.value.depend.Dependency;
 import checkdep.value.depend.PackageName;
+import checkdep.value.depend.PackageNames;
 import checkdep.value.violation.Violation;
 import checkdep.value.violation.Violations;
 
@@ -38,8 +39,9 @@ public class JDependConstraintChecker implements ConstraintChecker {
   }
 
   private Set<Violation> checkEfferents(Dependency actual, Dependency expect) {
+    PackageNames expectPackages = expect.getEfferents();
     return actual.getEfferents().stream()
-        .filter(item -> !expect.getEfferents().contains(item))
+        .filter(item -> !expectPackages.contains(item))
         .map(item -> new Violation(actual.getName(), item))
         .collect(toSet());
   }

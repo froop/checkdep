@@ -1,8 +1,5 @@
 package checkdep.value.depend;
 
-import java.util.Collections;
-import java.util.Set;
-
 public interface Dependency {
 
   static final Dependency NULL = new Dependency() {
@@ -13,12 +10,12 @@ public interface Dependency {
     }
 
     @Override
-    public Set<PackageName> getEfferents() {
-      return Collections.emptySet();
+    public PackageNames getEfferents() {
+      return PackageNames.EMPTY;
     }
   };
 
   PackageName getName();
 
-  Set<PackageName> getEfferents();
+  PackageNames getEfferents();
 }

@@ -6,8 +6,6 @@ import static org.junit.Assert.*;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.junit.Before;
@@ -16,6 +14,7 @@ import org.junit.Test;
 import checkdep.value.depend.Dependencies;
 import checkdep.value.depend.Dependency;
 import checkdep.value.depend.PackageName;
+import checkdep.value.depend.PackageNames;
 import checkdep.value.violation.Violation;
 import checkdep.value.violation.Violations;
 
@@ -66,20 +65,20 @@ public class JDependConstraintCheckerTest {
     assertFalse(res.toString(), it.hasNext());
   }
 
-//  @Test
-//  public void testCheck_SubPackageAllow() {
-//    target = new JDependConstraintChecker(Constraints.builder()
-//        .add("checkdep", "checkdep.check.*")
-//        .build());
-//    Dependencies dependencies = Dependencies.of(Arrays.asList(
-//        DependencyStub.of("checkdep",
-//            Arrays.asList("checkdep.check", "checkdep.check.a"))));
-//
-//    Violations res = target.check(dependencies);
-//
-//    Iterator<Violation> it = res.iterator();
-//    assertFalse(res.toString(), it.hasNext());
-//  }
+  @Test
+  public void testCheck_WildcardTo() {
+    target = new JDependConstraintChecker(Constraints.builder()
+        .add("checkdep", "checkdep.check.*")
+        .build());
+    Dependencies dependencies = Dependencies.of(Arrays.asList(
+        DependencyStub.of("checkdep",
+            Arrays.asList("checkdep.check", "checkdep.check.a"))));
+
+    Violations res = target.check(dependencies);
+
+    Iterator<Violation> it = res.iterator();
+    assertFalse(res.toString(), it.hasNext());
+  }
 
   @Test
   public void testCheck_NeedlessConstraint() {
@@ -100,7 +99,7 @@ public class JDependConstraintCheckerTest {
 
   private static class DependencyStub implements Dependency {
     private final PackageName name;
-    private final Set<PackageName> efferents;
+    private final PackageNames efferents;
 
     public static DependencyStub of(String name, Collection<String> efferents) {
       return new DependencyStub(
@@ -112,7 +111,7 @@ public class JDependConstraintCheckerTest {
 
     public DependencyStub(PackageName name, Collection<PackageName> efferents) {
       this.name = name;
-      this.efferents = new LinkedHashSet<>(efferents);
+      this.efferents = new PackageNames(efferents);
     }
 
     @Override
@@ -121,7 +120,7 @@ public class JDependConstraintCheckerTest {
     }
 
     @Override
-    public Set<PackageName> getEfferents() {
+    public PackageNames getEfferents() {
       return efferents;
     }
   }

@@ -6,7 +6,6 @@ import static org.junit.Assert.*;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import org.junit.Test;
 
@@ -38,9 +37,8 @@ public class DependenciesTest {
     }
 
     @Override
-    public Set<PackageName> getEfferents() {
-      // TODO Auto-generated method stub
-      return null;
+    public PackageNames getEfferents() {
+      return PackageNames.EMPTY;
     }
   }
 }
