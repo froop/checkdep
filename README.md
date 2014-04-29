@@ -16,8 +16,8 @@ Javaは、クラスに対しては可視性(public/protected/package)を指定�
 また、下記のようなパッケージ依存関係の制約がコード内では表現できず、コンパイルで検出できないため、
 意図しない依存関係ができてしまうことがあった。
 * OK: A -> B -> C
-* NG: A -> C
-* NG: B -> A
+* NG: B -> A (逆方向への依存はダメ)
+* NG: A -> C (層を飛び越した依存はダメ)
 
 パッケージ依存性に関するメトリクスツールである JDepend (http://clarkware.com/software/JDepend.html) には、
 その検出を意図した機能が一応あるが (JDepend#dependencyMatch())、
@@ -35,6 +35,7 @@ Javaコードの解析はJDependを利用し、依存性の検証のみを独自
 
 * Java SE 8
 * JDepend 2.9 (http://clarkware.com/software/JDepend.html)
+  -> 解析対象の .class で Java 8 の Stream を使っているとエラーになるので、https://github.com/froop/jdepend で対応
 * Google Guava 17 (http://code.google.com/p/guava-libraries/)
 * Apache Commons Lang 3.3 (http://commons.apache.org/proper/commons-lang/)
 
@@ -44,4 +45,4 @@ Javaコードの解析はJDependを利用し、依存性の検証のみを独自
 
 * Java 8 を使ってみる。関数型に興味。Stream API とか便利そう。
 * Apache Maven を使ってみる。ビルドツールはAntしか使ってなかったので。
-* Google Guava ライブラリを使ってみる。ImmutableCollection目当て
+* Google Guava ライブラリを使ってみる。ImmutableCollection目当て。
