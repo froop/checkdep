@@ -1,9 +1,9 @@
 package checkdep.check;
 
+import static java.util.Arrays.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.stream.Collectors;
@@ -31,8 +31,8 @@ public class JDependConstraintCheckerTest {
 
   @Test
   public void testCheck_AllExists() {
-    Dependencies dependencies = Dependencies.of(Arrays.asList(
-        DependencyStub.of("checkdep", Arrays.asList("checkdep.check"))));
+    Dependencies dependencies = Dependencies.of(asList(
+        DependencyStub.of("checkdep", asList("checkdep.check"))));
 
     Violations res = target.check(dependencies);
 
@@ -42,9 +42,9 @@ public class JDependConstraintCheckerTest {
 
   @Test
   public void testCheck_NotExistsDependency() {
-    Dependencies dependencies = Dependencies.of(Arrays.asList(
+    Dependencies dependencies = Dependencies.of(asList(
         DependencyStub.of("checkdep",
-            Arrays.asList("checkdep.check", "not.exists"))));
+            asList("checkdep.check", "not.exists"))));
 
     Violations res = target.check(dependencies);
 
@@ -55,9 +55,9 @@ public class JDependConstraintCheckerTest {
 
   @Test
   public void testCheck_SubPackageNotAllowFrom() {
-    Dependencies dependencies = Dependencies.of(Arrays.asList(
-        DependencyStub.of("checkdep", Arrays.asList("checkdep.check")),
-        DependencyStub.of("checkdep.a", Arrays.asList("checkdep.check"))));
+    Dependencies dependencies = Dependencies.of(asList(
+        DependencyStub.of("checkdep", asList("checkdep.check")),
+        DependencyStub.of("checkdep.a", asList("checkdep.check"))));
 
     Violations res = target.check(dependencies);
 
@@ -68,9 +68,8 @@ public class JDependConstraintCheckerTest {
 
   @Test
   public void testCheck_SubPackageNotAllowTo() {
-    Dependencies dependencies = Dependencies.of(Arrays.asList(
-        DependencyStub.of("checkdep",
-            Arrays.asList("checkdep.check", "checkdep.check.a"))));
+    Dependencies dependencies = Dependencies.of(asList(
+        DependencyStub.of("checkdep", asList("checkdep.check", "checkdep.check.a"))));
 
     Violations res = target.check(dependencies);
 
@@ -83,10 +82,11 @@ public class JDependConstraintCheckerTest {
   public void testCheck_WildcardTo() {
     target = new JDependConstraintChecker(Constraints.builder()
         .add("checkdep", "checkdep.check.*")
+        .add("checkdep.check", "checkdep.value.b")
         .build());
-    Dependencies dependencies = Dependencies.of(Arrays.asList(
-        DependencyStub.of("checkdep",
-            Arrays.asList("checkdep.check", "checkdep.check.a"))));
+    Dependencies dependencies = Dependencies.of(asList(
+        DependencyStub.of("checkdep", asList("checkdep.check", "checkdep.check.a")),
+        DependencyStub.of("checkdep.check", asList("checkdep.value.b"))));
 
     Violations res = target.check(dependencies);
 
@@ -99,9 +99,8 @@ public class JDependConstraintCheckerTest {
     target = new JDependConstraintChecker(Constraints.builder()
         .add("checkdep.check.*", "checkdep.parse")
         .build());
-    Dependencies dependencies = Dependencies.of(Arrays.asList(
-        DependencyStub.of("checkdep.check.a",
-            Arrays.asList("checkdep.parse"))));
+    Dependencies dependencies = Dependencies.of(asList(
+        DependencyStub.of("checkdep.check.a", asList("checkdep.parse"))));
 
     Violations res = target.check(dependencies);
 
@@ -114,9 +113,9 @@ public class JDependConstraintCheckerTest {
     target = new JDependConstraintChecker(Constraints.builder()
         .add("checkdep.check.*", "checkdep.parse.*")
         .build());
-    Dependencies dependencies = Dependencies.of(Arrays.asList(
+    Dependencies dependencies = Dependencies.of(asList(
         DependencyStub.of("checkdep.check.a",
-            Arrays.asList("checkdep.parse.a"))));
+            asList("checkdep.parse.a"))));
 
     Violations res = target.check(dependencies);
 
@@ -130,7 +129,7 @@ public class JDependConstraintCheckerTest {
         .add("a", "b")
         .add("1", "2")
         .build());
-    Dependencies dependencies = Dependencies.of(Arrays.asList());
+    Dependencies dependencies = Dependencies.of(asList());
 
     try {
       target.check(dependencies);

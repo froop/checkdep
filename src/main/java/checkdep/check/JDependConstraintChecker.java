@@ -40,17 +40,9 @@ public class JDependConstraintChecker implements ConstraintChecker {
   }
 
   private Set<Violation> checkEfferents(Dependency actual, Dependencies expects) {
-    if (expects.isEmpty()) {
-      return checkEfferents(actual, Dependency.NULL);
-    } else {
-      return expects.values().stream()
-          .flatMap(item -> checkEfferents(actual, item).stream())
-          .collect(toSet());
-    }
-  }
-
-  private Set<Violation> checkEfferents(Dependency actual, Dependency expect) {
-    PackageNames expectPackages = expect.getEfferents();
+    PackageNames expectPackages = new PackageNames(expects.values().stream()
+        .flatMap(item -> item.getEfferents().stream())
+        .collect(toSet()));
     return actual.getEfferents().stream()
         .filter(item -> !expectPackages.contains(item))
         .map(item -> new Violation(actual.getName(), item))
