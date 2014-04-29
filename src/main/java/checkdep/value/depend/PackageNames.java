@@ -18,13 +18,13 @@ public class PackageNames extends CollectionBase<PackageName> {
   }
 
   private boolean matches(PackageName name1, PackageName name2) {
-    String wildcardPattern = "^.*\\*$";
+    String wildcard = ".*";
     String str1 = name1.getValue();
     String str2 = name2.getValue();
-    if (str1.matches(wildcardPattern)) {
+    if (str1.endsWith(wildcard)) {
       return matchesWithWildcard(str1, str2);
     }
-    if (str2.matches(wildcardPattern)) {
+    if (str2.endsWith(wildcard)) {
       return matchesWithWildcard(str2, str1);
     }
     return str2.equals(str1);
