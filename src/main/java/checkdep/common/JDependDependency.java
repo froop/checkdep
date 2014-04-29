@@ -36,7 +36,7 @@ public class JDependDependency implements Dependency, Comparable<Dependency> {
 
   public static Dependencies toDependencies(Collection<JavaPackage> packages) {
     return Dependencies.of(packages.stream()
-        .map(item -> new JDependDependency(item))
+        .map(JDependDependency::new)
         .collect(toSet()));
   }
 

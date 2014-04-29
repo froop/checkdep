@@ -11,7 +11,7 @@ public class Dependencies extends MapBase<PackageName, Dependency> {
 
   public static Dependencies of(Collection<Dependency> collection) {
     return new Dependencies(collection.stream().collect(
-        toMap(item -> item.getName(), item -> item)));
+        toMap(Dependency::getName, item -> item)));
   }
 
   private Dependencies(Map<PackageName, Dependency> map) {
