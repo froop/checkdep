@@ -31,16 +31,16 @@ public class JDependConstraintChecker implements ConstraintChecker {
 
   private Set<Violation> check(Dependencies actualDeps, Dependencies expectDeps) {
     return actualDeps.values().stream()
-        .flatMap(actual -> checkEfferents(actual,
-            expectDeps.get(actual.getName()).orElse(Dependency.NULL)).stream())
+        .flatMap(item -> checkEfferents(item,
+            expectDeps.get(item.getName()).orElse(Dependency.NULL)).stream())
         .sorted()
         .collect(toSet());
   }
 
   private Set<Violation> checkEfferents(Dependency actual, Dependency expect) {
     return actual.getEfferents().stream()
-        .filter(efferent -> !expect.getEfferents().contains(efferent))
-        .map(efferent -> new Violation(actual.getName(), efferent))
+        .filter(item -> !expect.getEfferents().contains(item))
+        .map(item -> new Violation(actual.getName(), item))
         .collect(toSet());
   }
 

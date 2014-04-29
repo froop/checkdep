@@ -25,7 +25,7 @@ public class JDependDependency implements Dependency, Comparable<Dependency> {
   @Override
   public Set<PackageName> getEfferents() {
     return getRawEfferents().stream()
-        .map(efferent -> new PackageName(efferent.getName()))
+        .map(item -> new PackageName(item.getName()))
         .collect(toSet());
   }
 
