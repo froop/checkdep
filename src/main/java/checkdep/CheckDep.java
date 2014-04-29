@@ -2,10 +2,10 @@ package checkdep;
 
 import checkdep.check.ConstraintChecker;
 import checkdep.check.JDependConstraintChecker;
-import checkdep.parse.ExcludePackages;
 import checkdep.parse.ImportParser;
 import checkdep.parse.JDependImportParser;
 import checkdep.value.constraint.Constraints;
+import checkdep.value.exclude.ExcludePackages;
 import checkdep.value.source.SourceDirectories;
 import checkdep.value.violation.Violations;
 

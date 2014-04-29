@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import checkdep.parse.ExcludePackages;
 import checkdep.value.constraint.Constraints;
+import checkdep.value.exclude.ExcludePackages;
 import checkdep.value.source.SourceDirectories;
 import checkdep.value.violation.Violations;
 
@@ -26,6 +26,7 @@ public class CheckDepTest {
             .add("checkdep", "checkdep.check")
             .add("checkdep", "checkdep.parse")
             .add("checkdep", "checkdep.value.constraint")
+            .add("checkdep", "checkdep.value.exclude")
             .add("checkdep", "checkdep.value.source")
             .add("checkdep", "checkdep.value.violation")
             .add("checkdep.check", "checkdep.common")
@@ -37,6 +38,7 @@ public class CheckDepTest {
             .add("checkdep.common", "jdepend.framework")
             .add("checkdep.parse", "checkdep.common")
             .add("checkdep.parse", "checkdep.value.depend")
+            .add("checkdep.parse", "checkdep.value.exclude")
             .add("checkdep.parse", "checkdep.value.source")
             .add("checkdep.parse", "java.io")
             .add("checkdep.parse", "jdepend.framework")
