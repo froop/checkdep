@@ -11,10 +11,10 @@ import checkdep.value.depend.PackageNames;
 import checkdep.value.violation.Violation;
 import checkdep.value.violation.Violations;
 
-public class JDependConstraintChecker implements ConstraintChecker {
+public class DefaultConstraintChecker implements ConstraintChecker {
   private final Constraints constraints;
 
-  public JDependConstraintChecker(Constraints constraints) {
+  public DefaultConstraintChecker(Constraints constraints) {
     this.constraints = constraints;
   }
 

@@ -1,7 +1,7 @@
 package checkdep;
 
 import checkdep.check.ConstraintChecker;
-import checkdep.check.JDependConstraintChecker;
+import checkdep.check.DefaultConstraintChecker;
 import checkdep.parse.ImportParser;
 import checkdep.parse.JDependImportParser;
 import checkdep.value.constraint.Constraints;
@@ -15,7 +15,7 @@ public class CheckDep {
       ExcludePackages packages, Constraints constraints) {
     return new CheckDep(
         new JDependImportParser(directories, packages),
-        new JDependConstraintChecker(constraints)).execute();
+        new DefaultConstraintChecker(constraints)).execute();
   }
 
   private final ImportParser parser;

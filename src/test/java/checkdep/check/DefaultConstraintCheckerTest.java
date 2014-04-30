@@ -19,12 +19,12 @@ import checkdep.value.depend.PackageNames;
 import checkdep.value.violation.Violation;
 import checkdep.value.violation.Violations;
 
-public class JDependConstraintCheckerTest {
-  private JDependConstraintChecker target;
+public class DefaultConstraintCheckerTest {
+  private DefaultConstraintChecker target;
 
   @Before
   public void setUp() throws Exception {
-    target = new JDependConstraintChecker(Constraints.builder()
+    target = new DefaultConstraintChecker(Constraints.builder()
         .add("checkdep", "checkdep.check")
         .build());
   }
@@ -80,7 +80,7 @@ public class JDependConstraintCheckerTest {
 
   @Test
   public void testCheck_WildcardTo() {
-    target = new JDependConstraintChecker(Constraints.builder()
+    target = new DefaultConstraintChecker(Constraints.builder()
         .add("checkdep", "checkdep.check.*")
         .add("checkdep.check", "checkdep.value.b")
         .build());
@@ -96,7 +96,7 @@ public class JDependConstraintCheckerTest {
 
   @Test
   public void testCheck_WildcardFrom() {
-    target = new JDependConstraintChecker(Constraints.builder()
+    target = new DefaultConstraintChecker(Constraints.builder()
         .add("checkdep.check.*", "checkdep.parse")
         .build());
     Dependencies dependencies = Dependencies.of(asList(
@@ -110,7 +110,7 @@ public class JDependConstraintCheckerTest {
 
   @Test
   public void testCheck_WildcardFromTo() {
-    target = new JDependConstraintChecker(Constraints.builder()
+    target = new DefaultConstraintChecker(Constraints.builder()
         .add("checkdep.check.*", "checkdep.parse.*")
         .build());
     Dependencies dependencies = Dependencies.of(asList(
@@ -124,7 +124,7 @@ public class JDependConstraintCheckerTest {
 
   @Test
   public void testCheck_WildcardFromToEqual() {
-    target = new JDependConstraintChecker(Constraints.builder()
+    target = new DefaultConstraintChecker(Constraints.builder()
         .add("checkdep.*", "checkdep.*")
         .build());
     Dependencies dependencies = Dependencies.of(asList(
@@ -138,7 +138,7 @@ public class JDependConstraintCheckerTest {
 
   @Test
   public void testCheck_NeedlessConstraint() {
-    target = new JDependConstraintChecker(Constraints.builder()
+    target = new DefaultConstraintChecker(Constraints.builder()
         .add("a", "b")
         .add("1", "2")
         .build());
