@@ -29,11 +29,9 @@ public class CheckDepTest {
             .add("checkdep", "checkdep.value.exclude")
             .add("checkdep", "checkdep.value.source")
             .add("checkdep", "checkdep.value.violation")
-            .add("checkdep.check", "checkdep.common")
             .add("checkdep.check", "checkdep.value.constraint")
             .add("checkdep.check", "checkdep.value.depend")
             .add("checkdep.check", "checkdep.value.violation")
-            .add("checkdep.check", "jdepend.framework")
             .add("checkdep.common", "checkdep.value.depend")
             .add("checkdep.common", "jdepend.framework")
             .add("checkdep.parse", "checkdep.common")
@@ -66,15 +64,12 @@ public class CheckDepTest {
             .add("checkdep", "checkdep.value.*")
             .add("checkdep.*", "checkdep.common.*")
             .add("checkdep.check.*", "checkdep.value.*")
-            .add("checkdep.check.*", "jdepend.framework")
             .add("checkdep.common.*", "checkdep.value.*")
             .add("checkdep.common.*", "jdepend.framework")
             .add("checkdep.parse.*", "checkdep.value.*")
             .add("checkdep.parse.*", "java.io")
             .add("checkdep.parse.*", "jdepend.framework")
-//TODO            .add("checkdep.value.*", "checkdep.value.*")
-            .add("checkdep.value.constraint", "checkdep.value.depend")
-            .add("checkdep.value.violation", "checkdep.value.depend")
+            .add("checkdep.value.*", "checkdep.value.*")
             .build());
 
     assertTrue(res.toString(), res.isEmpty());

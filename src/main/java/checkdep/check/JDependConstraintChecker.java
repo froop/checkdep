@@ -4,12 +4,9 @@ import static java.util.stream.Collectors.*;
 
 import java.util.Set;
 
-import jdepend.framework.DependencyConstraint;
-import checkdep.common.JDependDependency;
 import checkdep.value.constraint.Constraints;
 import checkdep.value.depend.Dependencies;
 import checkdep.value.depend.Dependency;
-import checkdep.value.depend.PackageName;
 import checkdep.value.depend.PackageNames;
 import checkdep.value.violation.Violation;
 import checkdep.value.violation.Violations;
@@ -23,7 +20,7 @@ public class JDependConstraintChecker implements ConstraintChecker {
 
   @Override
   public Violations check(Dependencies dependencies) {
-    Dependencies constraintDeps = toDependencies(createJDependConstraint());
+    Dependencies constraintDeps = constraints.toDependencies();
     Set<Violation> needlessSet = check(constraintDeps, dependencies);
     if (!needlessSet.isEmpty()) {
       throw new NeedlessConstraintException(needlessSet.toString());
@@ -47,21 +44,5 @@ public class JDependConstraintChecker implements ConstraintChecker {
         .filter(item -> !expectPackages.contains(item))
         .map(item -> new Violation(actual.getName(), item))
         .collect(toSet());
-  }
-
-  private DependencyConstraint createJDependConstraint() {
-    DependencyConstraint constraint = new DependencyConstraint();
-    constraints.forEach(item -> {
-      PackageName from = item.getFrom();
-      PackageName to = item.getTo();
-      constraint.addPackage(from.getValue()).dependsUpon(
-          constraint.addPackage(to.getValue()));
-    });
-    return constraint;
-  }
-
-  @SuppressWarnings("unchecked")
-  private Dependencies toDependencies(DependencyConstraint constraint) {
-    return JDependDependency.toDependencies(constraint.getPackages());
   }
 }

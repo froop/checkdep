@@ -114,8 +114,21 @@ public class JDependConstraintCheckerTest {
         .add("checkdep.check.*", "checkdep.parse.*")
         .build());
     Dependencies dependencies = Dependencies.of(asList(
-        DependencyStub.of("checkdep.check.a",
-            asList("checkdep.parse.a"))));
+        DependencyStub.of("checkdep.check.a", asList("checkdep.parse.a"))));
+
+    Violations res = target.check(dependencies);
+
+    Iterator<Violation> it = res.iterator();
+    assertFalse(res.toString(), it.hasNext());
+  }
+
+  @Test
+  public void testCheck_WildcardFromToEqual() {
+    target = new JDependConstraintChecker(Constraints.builder()
+        .add("checkdep.*", "checkdep.*")
+        .build());
+    Dependencies dependencies = Dependencies.of(asList(
+        DependencyStub.of("checkdep.check.a", asList("checkdep.parse.a"))));
 
     Violations res = target.check(dependencies);
 
