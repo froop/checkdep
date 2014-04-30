@@ -10,7 +10,7 @@ import checkdep.value.depend.Dependency;
 import checkdep.value.depend.PackageName;
 import checkdep.value.depend.PackageNames;
 
-public class JDependDependency implements Dependency, Comparable<Dependency> {
+public class JDependDependency implements Dependency {
   private final JavaPackage raw;
 
   public JDependDependency(JavaPackage raw) {
@@ -38,10 +38,5 @@ public class JDependDependency implements Dependency, Comparable<Dependency> {
     return Dependencies.of(packages.stream()
         .map(JDependDependency::new)
         .collect(toSet()));
-  }
-
-  @Override
-  public int compareTo(Dependency other) {
-    return getName().compareTo(other.getName());
   }
 }

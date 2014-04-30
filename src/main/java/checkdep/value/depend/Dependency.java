@@ -1,6 +1,6 @@
 package checkdep.value.depend;
 
-public interface Dependency {
+public interface Dependency extends Comparable<Dependency> {
 
   static final Dependency NULL = new Dependency() {
 
@@ -18,4 +18,9 @@ public interface Dependency {
   PackageName getName();
 
   PackageNames getEfferents();
+
+  @Override
+  default int compareTo(Dependency other) {
+    return getName().compareTo(other.getName());
+  }
 }
