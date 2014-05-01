@@ -39,7 +39,12 @@ public class Constraints extends CollectionBase<Constraint> {
   }
 
   public Dependencies toDependencies() {
-//  stream().reduce(HashMultimap.create(), (map, item) -> map.put(item.getFrom(), item.getTo()), Map::putAll);
+//    Map<PackageName, Set<PackageName>> map = stream().collect(
+//        toMap(item -> item.getFrom(), item -> Sets.newHashSet(item.getTo()),
+//            (left, right) -> {
+//          left.addAll(right);
+//          return left;
+//        }));
     Multimap<PackageName, PackageName> map = HashMultimap.create();
     for (Constraint item : this) {
       map.put(item.getFrom(), item.getTo());
