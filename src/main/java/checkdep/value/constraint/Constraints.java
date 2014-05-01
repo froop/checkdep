@@ -1,14 +1,11 @@
 package checkdep.value.constraint;
 
-import static java.util.stream.Collectors.*;
-
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 import checkdep.util.CollectionBase;
 import checkdep.value.depend.Dependencies;
-import checkdep.value.depend.Dependency;
 import checkdep.value.depend.PackageName;
 
 import com.google.common.collect.HashMultimap;
@@ -48,8 +45,6 @@ public class Constraints extends CollectionBase<Constraint> {
     for (Constraint item : this) {
       map.put(item.getFrom(), item.getTo());
     }
-    return Dependencies.of(map.asMap().entrySet().stream()
-        .map(item -> Dependency.of(item.getKey(), item.getValue()))
-        .collect(toList()));
+    return Dependencies.of(map.asMap());
   }
 }
