@@ -10,7 +10,6 @@ import checkdep.util.CollectionBase;
 import checkdep.value.depend.Dependencies;
 import checkdep.value.depend.Dependency;
 import checkdep.value.depend.PackageName;
-import checkdep.value.depend.PackageNames;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
@@ -50,27 +49,7 @@ public class Constraints extends CollectionBase<Constraint> {
       map.put(item.getFrom(), item.getTo());
     }
     return Dependencies.of(map.asMap().entrySet().stream()
-        .map(item -> new DependencyImpl(item.getKey(), item.getValue()))
+        .map(item -> Dependency.of(item.getKey(), item.getValue()))
         .collect(toList()));
-  }
-
-  private static class DependencyImpl implements Dependency {
-    private final PackageName name;
-    private final PackageNames efferents;
-
-    public DependencyImpl(PackageName name, Collection<PackageName> efferents) {
-      this.name = name;
-      this.efferents = new PackageNames(efferents);
-    }
-
-    @Override
-    public PackageName getName() {
-      return name;
-    }
-
-    @Override
-    public PackageNames getEfferents() {
-      return efferents;
-    }
   }
 }
