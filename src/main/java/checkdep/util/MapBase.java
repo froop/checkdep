@@ -1,11 +1,11 @@
 package checkdep.util;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
-import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSet;
 
 public class MapBase<K, V> extends ValueBase {
   private final ImmutableMap<K, V> map;
@@ -18,12 +18,16 @@ public class MapBase<K, V> extends ValueBase {
     return Optional.ofNullable(map.get(key));
   }
 
-  public ImmutableSet<K> keySet() {
+  public Set<K> keySet() {
     return map.keySet();
   }
 
-  public ImmutableCollection<V> values() {
+  public Collection<V> values() {
     return map.values();
+  }
+
+  public Set<Map.Entry<K, V>> entrySet() {
+    return map.entrySet();
   }
 
   public boolean isEmpty() {
