@@ -2,6 +2,7 @@ package checkdep.check;
 
 import static java.util.stream.Collectors.*;
 
+import java.util.List;
 import java.util.Set;
 
 import checkdep.value.constraint.Constraints;
@@ -21,19 +22,19 @@ public class DefaultConstraintChecker implements ConstraintChecker {
   @Override
   public Violations check(Dependencies dependencies) {
     Dependencies constraintDeps = constraints.toDependencies();
-    Set<Violation> needlessSet = check(constraintDeps, dependencies);
+    List<Violation> needlessSet = check(constraintDeps, dependencies);
     if (!needlessSet.isEmpty()) {
       throw new NeedlessConstraintException(needlessSet.toString());
     }
     return new Violations(check(dependencies, constraintDeps));
   }
 
-  private Set<Violation> check(Dependencies actualDeps, Dependencies expectDeps) {
+  private List<Violation> check(Dependencies actualDeps, Dependencies expectDeps) {
     return actualDeps.values().stream()
         .flatMap(item -> checkEfferents(item,
             expectDeps.find(item.getName())).stream())
         .sorted()
-        .collect(toSet());
+        .collect(toList());
   }
 
   private Set<Violation> checkEfferents(Dependency actual, Dependencies expects) {
