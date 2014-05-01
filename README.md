@@ -6,6 +6,50 @@ A Java package dependency checker.
 Javaのパッケージ間の依存性を検証し、可視性制約を擬似的に実現するツール。JUnit等の自動テストから使用されることを想定。
 
 
+使用例
+--------------------
+
+```java
+@Test
+public void test() {
+  Violations res = CheckDep.check(
+      SourceDirectories.of(
+          "target/classes"),
+      ExcludePackages.of(
+          "java.lang",
+          "java.util",
+          "org.apache.commons.lang3",
+          "com.google.common.collect",
+          "checkdep.util"),
+      Constraints.builder()
+          .add("checkdep", "checkdep.check.*")
+          .add("checkdep", "checkdep.parse.*")
+          .add("checkdep", "checkdep.value.*")
+          .add("checkdep.*", "checkdep.common.*")
+          .add("checkdep.check.*", "checkdep.value.*")
+          .add("checkdep.common.*", "checkdep.value.*")
+          .add("checkdep.common.*", "jdepend.framework")
+          .add("checkdep.parse.*", "checkdep.value.*")
+          .add("checkdep.parse.*", "java.io")
+          .add("checkdep.parse.*", "jdepend.framework")
+          .add("checkdep.value.*", "checkdep.value.*")
+          .build());
+
+  assertTrue(res.toString(), res.isEmpty());
+}
+```
+
+
+前提環境
+--------------------
+
+* Java SE 8
+* JDepend 2.9 (http://clarkware.com/software/JDepend.html)
+  -> 解析対象の .class で Java 8 の Stream を使っているとエラーになるので、https://github.com/froop/jdepend で対応
+* Google Guava 17 (http://code.google.com/p/guava-libraries/)
+* Apache Commons Lang 3.3 (http://commons.apache.org/proper/commons-lang/)
+
+
 存在理由
 --------------------
 
@@ -24,25 +68,15 @@ Javaは、クラスに対しては可視性(public/protected/package)を指定�
 プロジェクト全体についてのbooleanしか返さず、具体的にどの依存性に違反があるのかが取れないため使いづらい。
 
 
-実現方式
---------------------
-
-Javaコードの解析はJDependを利用し、依存性の検証のみを独自に開発する。
-
-
-前提環境
---------------------
-
-* Java SE 8
-* JDepend 2.9 (http://clarkware.com/software/JDepend.html)
-  -> 解析対象の .class で Java 8 の Stream を使っているとエラーになるので、https://github.com/froop/jdepend で対応
-* Google Guava 17 (http://code.google.com/p/guava-libraries/)
-* Apache Commons Lang 3.3 (http://commons.apache.org/proper/commons-lang/)
-
-
 個人的開発理由
 --------------------
 
 * Java 8 を使ってみる。関数型に興味。Stream API とか便利そう。
 * Apache Maven を使ってみる。ビルドツールはAntしか使ってなかったので。
 * Google Guava ライブラリを使ってみる。ImmutableCollection目当て。
+
+
+実現方式
+--------------------
+
+Javaコードの解析はJDependを利用し、依存性の検証のみを独自に開発する。
