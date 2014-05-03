@@ -162,7 +162,7 @@ public class DefaultConstraintCheckerTest {
       return new DependencyStub(
           new PackageName(name),
           efferents.stream()
-            .map(str -> new PackageName(str))
+            .map(PackageName::new)
             .collect(Collectors.toSet()));
     }
 

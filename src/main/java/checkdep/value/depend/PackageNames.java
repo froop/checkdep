@@ -14,7 +14,7 @@ public class PackageNames extends CollectionBase<PackageName> {
       new PackageNames(Collections.emptySet());
 
   public static PackageNames of(Collection<PackageName> raw) {
-    return new PackageNames(new TreeSet<PackageName>(raw));
+    return new PackageNames(new TreeSet<>(raw));
   }
 
   public static PackageNames of(PackageName raw) {

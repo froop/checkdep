@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import checkdep.util.CollectionBase;
+import checkdep.value.depend.DependArrow;
 import checkdep.value.depend.Dependencies;
 import checkdep.value.depend.PackageName;
 import checkdep.value.depend.PackageNames;
@@ -39,7 +40,7 @@ public class Constraints extends CollectionBase<Constraint> {
     // TODO: 直接Dependencies.of()に渡すとエラーになるため、一時変数に格納
     // (EclipseのJava8対応が不十分？)
     Map<PackageName, PackageNames> res = stream().collect(
-        toMap(item -> item.getFrom(), item -> PackageNames.of(item.getTo()),
+        toMap(DependArrow::getFrom, item -> PackageNames.of(item.getTo()),
             (left, right) -> left.merge(right)));
 //    Multimap<PackageName, PackageName> map = HashMultimap.create();
 //    for (Constraint item : this) {
