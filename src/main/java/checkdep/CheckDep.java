@@ -21,7 +21,7 @@ public class CheckDep {
   private final ImportParser parser;
   private final ConstraintChecker checker;
 
-  public CheckDep(ImportParser parser, ConstraintChecker checker) {
+  private CheckDep(ImportParser parser, ConstraintChecker checker) {
     this.parser = parser;
     this.checker = checker;
   }

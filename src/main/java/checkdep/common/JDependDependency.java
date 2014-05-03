@@ -13,7 +13,7 @@ import checkdep.value.depend.PackageNames;
 public class JDependDependency implements Dependency {
   private final JavaPackage raw;
 
-  public JDependDependency(JavaPackage raw) {
+  private JDependDependency(JavaPackage raw) {
     this.raw = raw;
   }
 
