@@ -35,4 +35,9 @@ public class PackageName implements Comparable<PackageName> {
   private boolean matchesWithWildcard(String str1, String str2) {
     return str2.startsWith(str1.replaceAll("\\.?\\*$", ""));
   }
+
+  @Override
+  public String toString() {
+      return value;
+  }
 }
