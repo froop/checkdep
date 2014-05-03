@@ -1,4 +1,4 @@
-package checkdep.common;
+package checkdep.parse;
 
 import static java.util.stream.Collectors.*;
 
@@ -10,7 +10,7 @@ import checkdep.value.depend.Dependency;
 import checkdep.value.depend.PackageName;
 import checkdep.value.depend.PackageNames;
 
-public class JDependDependency implements Dependency {
+class JDependDependency implements Dependency {
   private final JavaPackage raw;
 
   private JDependDependency(JavaPackage raw) {

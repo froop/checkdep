@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import jdepend.framework.JDepend;
 import jdepend.framework.PackageFilter;
-import checkdep.common.JDependDependency;
 import checkdep.value.depend.Dependencies;
 import checkdep.value.exclude.ExcludePackages;
 import checkdep.value.source.SourceDirectories;
