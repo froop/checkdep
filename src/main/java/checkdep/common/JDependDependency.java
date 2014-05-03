@@ -24,7 +24,7 @@ public class JDependDependency implements Dependency {
 
   @Override
   public PackageNames getEfferents() {
-    return new PackageNames(getRawEfferents().stream()
+    return PackageNames.of(getRawEfferents().stream()
         .map(item -> new PackageName(item.getName()))
         .collect(toSet()));
   }

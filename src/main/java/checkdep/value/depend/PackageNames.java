@@ -21,11 +21,11 @@ public class PackageNames extends CollectionBase<PackageName> {
     return new PackageNames(raw);
   }
 
-  public PackageNames(Collection<PackageName> raw) {
+  private PackageNames(Collection<PackageName> raw) {
     super(raw);
   }
 
-  public PackageNames(PackageName raw) {
+  private PackageNames(PackageName raw) {
     super(raw);
   }
 

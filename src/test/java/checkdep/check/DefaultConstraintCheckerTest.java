@@ -168,7 +168,7 @@ public class DefaultConstraintCheckerTest {
 
     public DependencyStub(PackageName name, Collection<PackageName> efferents) {
       this.name = name;
-      this.efferents = new PackageNames(efferents);
+      this.efferents = PackageNames.of(efferents);
     }
 
     @Override

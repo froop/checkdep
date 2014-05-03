@@ -38,7 +38,7 @@ public class DefaultConstraintChecker implements ConstraintChecker {
   }
 
   private Set<Violation> checkEfferents(Dependency actual, Dependencies expects) {
-    PackageNames expectPackages = new PackageNames(expects.values().stream()
+    PackageNames expectPackages = PackageNames.of(expects.values().stream()
         .flatMap(item -> item.getEfferents().stream())
         .collect(toSet()));
     return actual.getEfferents().stream()
