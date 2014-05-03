@@ -36,13 +36,15 @@ public class Constraints extends CollectionBase<Constraint> {
   }
 
   public Dependencies toDependencies() {
-    Map<PackageName, PackageNames> map = stream().collect(
+    // TODO: 直接Dependencies.of()に渡すとエラーになるため、一時変数に格納
+    // (EclipseのJava8対応が不十分？)
+    Map<PackageName, PackageNames> res = stream().collect(
         toMap(item -> item.getFrom(), item -> PackageNames.of(item.getTo()),
             (left, right) -> left.merge(right)));
 //    Multimap<PackageName, PackageName> map = HashMultimap.create();
 //    for (Constraint item : this) {
 //      map.put(item.getFrom(), item.getTo());
 //    }
-    return Dependencies.of(map);
+    return Dependencies.of(res);
   }
 }
