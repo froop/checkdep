@@ -37,6 +37,9 @@ public class CheckDepTest {
             .add("checkdep.parse", "checkdep.value.source")
             .add("checkdep.parse", "java.io")
             .add("checkdep.parse", "jdepend.framework")
+            .add("checkdep.value.depend", "java.beans")
+            .add("checkdep.value.exclude", "java.beans")
+            .add("checkdep.value.source", "java.beans")
             .add("checkdep.value.constraint", "checkdep.value.depend")
             .add("checkdep.value.violation", "checkdep.value.depend")
             .build());
@@ -64,6 +67,7 @@ public class CheckDepTest {
             .add("checkdep.parse.*", "java.io")
             .add("checkdep.parse.*", "jdepend.framework")
             .add("checkdep.value.*", "checkdep.value.*")
+            .add("checkdep.value.*", "java.beans")
             .build());
 
     assertTrue(res.toString(), res.isEmpty());

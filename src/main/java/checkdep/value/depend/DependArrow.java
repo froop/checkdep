@@ -1,8 +1,11 @@
 package checkdep.value.depend;
 
-import checkdep.util.ValueBase;
+import lombok.Value;
+import lombok.experimental.NonFinal;
 
-public class DependArrow extends ValueBase {
+@Value
+@NonFinal
+public class DependArrow {
   private final PackageName from;
   private final PackageName to;
 
@@ -13,14 +16,6 @@ public class DependArrow extends ValueBase {
 
   protected DependArrow(String from, String to) {
     this(new PackageName(from), new PackageName(to));
-  }
-
-  public PackageName getFrom() {
-    return from;
-  }
-
-  public PackageName getTo() {
-    return to;
   }
 
   @Override

@@ -1,18 +1,17 @@
 package checkdep.value.depend;
 
-import checkdep.util.ValueBase;
+import lombok.NonNull;
+import lombok.Value;
 
-public class PackageName extends ValueBase implements Comparable<PackageName> {
+@Value
+public class PackageName implements Comparable<PackageName> {
   public static final PackageName NULL = new PackageName("");
 
+  @NonNull
   private final String value;
 
   public PackageName(String value) {
     this.value = value.trim();
-  }
-
-  public String getValue() {
-    return value;
   }
 
   @Override

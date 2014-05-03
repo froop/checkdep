@@ -1,21 +1,14 @@
 package checkdep.value.depend;
 
+import lombok.NonNull;
+import lombok.Value;
+
+@Value
 class DefaultDependency implements Dependency {
+
+  @NonNull
   private final PackageName name;
+
+  @NonNull
   private final PackageNames efferents;
-
-  public DefaultDependency(PackageName name, PackageNames efferents) {
-    this.name = name;
-    this.efferents = efferents;
-  }
-
-  @Override
-  public PackageName getName() {
-    return name;
-  }
-
-  @Override
-  public PackageNames getEfferents() {
-    return efferents;
-  }
 }
