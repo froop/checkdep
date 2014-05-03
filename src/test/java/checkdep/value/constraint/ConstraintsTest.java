@@ -4,9 +4,9 @@ import static com.google.common.collect.Sets.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -36,9 +36,9 @@ public class ConstraintsTest {
   }
 
   private void assertEntry(Entry<PackageName, Dependency> item,
-      PackageName name, HashSet<PackageName> efferents) {
+      PackageName name, Set<PackageName> efferents) {
     assertThat(item.getKey(), is(name));
     assertThat(item.getValue().getName(), is(name));
-    assertThat(item.getValue().getEfferents(), is(new PackageNames(efferents)));
+    assertThat(item.getValue().getEfferents(), is(PackageNames.of(efferents)));
   }
 }

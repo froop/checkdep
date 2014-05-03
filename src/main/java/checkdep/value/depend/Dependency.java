@@ -1,7 +1,5 @@
 package checkdep.value.depend;
 
-import java.util.Collection;
-
 public interface Dependency extends Comparable<Dependency> {
 
   static final Dependency NULL = new Dependency() {
@@ -26,7 +24,7 @@ public interface Dependency extends Comparable<Dependency> {
     return getName().compareTo(other.getName());
   }
 
-  static Dependency of(PackageName name, Collection<PackageName> efferents) {
+  static Dependency of(PackageName name, PackageNames efferents) {
     return new DefaultDependency(name, efferents);
   }
 }

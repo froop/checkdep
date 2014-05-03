@@ -1,15 +1,16 @@
 package checkdep.value.constraint;
 
+import static java.util.stream.Collectors.*;
+
 import java.util.Collection;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Set;
 
 import checkdep.util.CollectionBase;
 import checkdep.value.depend.Dependencies;
 import checkdep.value.depend.PackageName;
-
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Multimap;
+import checkdep.value.depend.PackageNames;
 
 public class Constraints extends CollectionBase<Constraint> {
 
@@ -35,16 +36,13 @@ public class Constraints extends CollectionBase<Constraint> {
   }
 
   public Dependencies toDependencies() {
-//    Map<PackageName, Set<PackageName>> map = stream().collect(
-//        toMap(item -> item.getFrom(), item -> Sets.newHashSet(item.getTo()),
-//            (left, right) -> {
-//          left.addAll(right);
-//          return left;
-//        }));
-    Multimap<PackageName, PackageName> map = HashMultimap.create();
-    for (Constraint item : this) {
-      map.put(item.getFrom(), item.getTo());
-    }
-    return Dependencies.of(map.asMap());
+    Map<PackageName, PackageNames> map = stream().collect(
+        toMap(item -> item.getFrom(), item -> PackageNames.of(item.getTo()),
+            (left, right) -> left.merge(right)));
+//    Multimap<PackageName, PackageName> map = HashMultimap.create();
+//    for (Constraint item : this) {
+//      map.put(item.getFrom(), item.getTo());
+//    }
+    return Dependencies.of(map);
   }
 }

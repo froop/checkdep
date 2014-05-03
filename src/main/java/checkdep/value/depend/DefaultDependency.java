@@ -1,14 +1,12 @@
 package checkdep.value.depend;
 
-import java.util.Collection;
-
 class DefaultDependency implements Dependency {
   private final PackageName name;
   private final PackageNames efferents;
 
-  public DefaultDependency(PackageName name, Collection<PackageName> efferents) {
+  public DefaultDependency(PackageName name, PackageNames efferents) {
     this.name = name;
-    this.efferents = new PackageNames(efferents);
+    this.efferents = efferents;
   }
 
   @Override
