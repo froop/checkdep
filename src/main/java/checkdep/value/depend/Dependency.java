@@ -1,7 +1,6 @@
 package checkdep.value.depend;
 
 public interface Dependency extends Comparable<Dependency> {
-  static final Dependency NULL = DefaultDependency.of(PackageName.NULL, PackageNames.EMPTY);
 
   PackageName getName();
 
