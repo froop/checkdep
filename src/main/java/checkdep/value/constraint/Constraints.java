@@ -41,7 +41,7 @@ public class Constraints extends CollectionBase<Constraint> {
     // (EclipseのJava8対応が不十分？)
     Map<PackageName, PackageNames> res = stream().collect(
         toMap(DependArrow::getFrom, item -> PackageNames.of(item.getTo()),
-            (left, right) -> left.merge(right)));
+            (left, right) -> left.concat(right)));
 //    Multimap<PackageName, PackageName> map = HashMultimap.create();
 //    for (Constraint item : this) {
 //      map.put(item.getFrom(), item.getTo());

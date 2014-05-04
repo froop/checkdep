@@ -31,7 +31,7 @@ public class PackageNames extends CollectionBase<PackageName> {
     return stream().anyMatch(target::matches);
   }
 
-  public PackageNames merge(PackageNames adding) {
+  public PackageNames concat(PackageNames adding) {
     return of(Iterables.concat(this, adding));
   }
 }
