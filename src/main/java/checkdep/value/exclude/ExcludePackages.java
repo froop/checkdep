@@ -9,6 +9,6 @@ public class ExcludePackages extends CollectionBase<ExcludePackage> {
   }
 
   private ExcludePackages(String... packages) {
-    super(packages, ExcludePackage::new);
+    super(packages, ExcludePackage::of);
   }
 }

@@ -7,7 +7,11 @@ import checkdep.util.StringValueBase;
  */
 public class ExcludePackage extends StringValueBase {
 
-  public ExcludePackage(String value) {
+  public static ExcludePackage of(String value) {
+    return new ExcludePackage(value);
+  }
+
+  private ExcludePackage(String value) {
     super(value);
   }
 }
