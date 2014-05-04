@@ -2,7 +2,6 @@ package checkdep;
 
 import checkdep.check.ConstraintChecker;
 import checkdep.parse.ImportParser;
-import checkdep.parse.JDependImportParser;
 import checkdep.value.constraint.Constraints;
 import checkdep.value.exclude.ExcludePackages;
 import checkdep.value.source.SourceDirectories;
@@ -15,7 +14,7 @@ public class CheckDep {
                                  @NonNull ExcludePackages packages,
                                  @NonNull Constraints constraints) {
     return new CheckDep(
-        new JDependImportParser(directories, packages),
+        ImportParser.of(directories, packages),
         ConstraintChecker.of(constraints)).execute();
   }
 

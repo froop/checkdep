@@ -14,7 +14,7 @@ public class JDependImportParser implements ImportParser {
   private final SourceDirectories source;
   private final ExcludePackages exclude;
 
-  public JDependImportParser(@NonNull SourceDirectories source, @NonNull ExcludePackages exclude) {
+  JDependImportParser(@NonNull SourceDirectories source, @NonNull ExcludePackages exclude) {
     this.source = source;
     this.exclude = exclude;
   }
