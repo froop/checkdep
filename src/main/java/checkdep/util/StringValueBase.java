@@ -11,7 +11,7 @@ public class StringValueBase implements Comparable<StringValueBase> {
   @NonNull
   private final String value;
 
-  public StringValueBase(String value) {
+  protected StringValueBase(String value) {
     this.value = value.trim();
   }
 
