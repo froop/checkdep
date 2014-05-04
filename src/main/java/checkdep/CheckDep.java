@@ -8,11 +8,13 @@ import checkdep.value.constraint.Constraints;
 import checkdep.value.exclude.ExcludePackages;
 import checkdep.value.source.SourceDirectories;
 import checkdep.value.violation.Violations;
+import lombok.NonNull;
 
 public class CheckDep {
 
-  public static Violations check(SourceDirectories directories,
-      ExcludePackages packages, Constraints constraints) {
+  public static Violations check(@NonNull SourceDirectories directories,
+                                 @NonNull ExcludePackages packages,
+                                 @NonNull Constraints constraints) {
     return new CheckDep(
         new JDependImportParser(directories, packages),
         new DefaultConstraintChecker(constraints)).execute();

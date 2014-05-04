@@ -11,16 +11,17 @@ import checkdep.value.depend.Dependency;
 import checkdep.value.depend.PackageNames;
 import checkdep.value.violation.Violation;
 import checkdep.value.violation.Violations;
+import lombok.NonNull;
 
 public class DefaultConstraintChecker implements ConstraintChecker {
   private final Constraints constraints;
 
-  public DefaultConstraintChecker(Constraints constraints) {
+  public DefaultConstraintChecker(@NonNull Constraints constraints) {
     this.constraints = constraints;
   }
 
   @Override
-  public Violations check(Dependencies dependencies) {
+  public Violations check(@NonNull Dependencies dependencies) {
     Dependencies constraintDeps = constraints.toDependencies();
     List<Violation> needlessSet = check(constraintDeps, dependencies);
     if (!needlessSet.isEmpty()) {
