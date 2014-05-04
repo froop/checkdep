@@ -7,15 +7,16 @@ import java.util.Optional;
 import java.util.Set;
 
 import com.google.common.collect.ImmutableMap;
+import lombok.NonNull;
 
 public class MapBase<K, V> {
   private final ImmutableMap<K, V> map;
 
-  protected MapBase(Map<K, V> map) {
+  protected MapBase(@NonNull Map<K, V> map) {
     this.map = ImmutableMap.copyOf(map);
   }
 
-  public Optional<V> get(K key) {
+  public Optional<V> get(@NonNull K key) {
     return Optional.ofNullable(map.get(key));
   }
 

@@ -11,19 +11,20 @@ import java.util.stream.Stream;
 
 import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableList;
+import lombok.NonNull;
 
 public abstract class CollectionBase<E> implements Iterable<E> {
   private final ImmutableCollection<E> raw;
 
-  protected CollectionBase(Collection<E> raw) {
+  protected CollectionBase(@NonNull Collection<E> raw) {
     this.raw = ImmutableList.copyOf(raw);
   }
 
-  protected CollectionBase(E raw) {
+  protected CollectionBase(@NonNull E raw) {
     this.raw = ImmutableList.of(raw);
   }
 
-  protected CollectionBase(String[] raw, Function<String, E> mapper) {
+  protected CollectionBase(@NonNull String[] raw, @NonNull Function<String, E> mapper) {
     this(Arrays.stream(raw).map(mapper).collect(toList()));
   }
 
