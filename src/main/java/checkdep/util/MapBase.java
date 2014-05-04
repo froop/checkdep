@@ -31,10 +31,6 @@ public class MapBase<K, V> {
     return map.entrySet();
   }
 
-  public boolean isEmpty() {
-    return map.isEmpty();
-  }
-
   @Override
   public int hashCode() {
     return map.hashCode();

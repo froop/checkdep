@@ -32,10 +32,6 @@ public abstract class CollectionBase<E> implements Iterable<E> {
     return raw.iterator();
   }
 
-  public int size() {
-    return raw.size();
-  }
-
   public boolean isEmpty() {
     return raw.isEmpty();
   }
