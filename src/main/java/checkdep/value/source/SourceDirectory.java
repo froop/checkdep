@@ -1,15 +1,14 @@
 package checkdep.value.source;
 
-import lombok.NonNull;
-import lombok.Value;
+import checkdep.util.StringValueBase;
 
 /**
  * 元ディレクトリ.
  * 解析するclasspath.
  */
-@Value
-public class SourceDirectory {
+public class SourceDirectory extends StringValueBase<SourceDirectory> {
 
-  @NonNull
-  private final String value;
+  public SourceDirectory(String value) {
+    super(value);
+  }
 }

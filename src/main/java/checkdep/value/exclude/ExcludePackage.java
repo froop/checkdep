@@ -1,14 +1,13 @@
 package checkdep.value.exclude;
 
-import lombok.NonNull;
-import lombok.Value;
+import checkdep.util.StringValueBase;
 
 /**
  * 除外するパッケージ.
  */
-@Value
-public class ExcludePackage {
+public class ExcludePackage extends StringValueBase<ExcludePackage> {
 
-  @NonNull
-  private final String value;
+  public ExcludePackage(String value) {
+    super(value);
+  }
 }
