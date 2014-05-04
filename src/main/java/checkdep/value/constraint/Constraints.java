@@ -3,15 +3,14 @@ package checkdep.value.constraint;
 import static java.util.stream.Collectors.*;
 
 import java.util.Collection;
-import java.util.LinkedHashSet;
 import java.util.Map;
-import java.util.Set;
 
 import checkdep.util.CollectionBase;
 import checkdep.value.depend.DependArrow;
 import checkdep.value.depend.Dependencies;
 import checkdep.value.depend.PackageName;
 import checkdep.value.depend.PackageNames;
+import com.google.common.collect.ImmutableSet;
 
 public class Constraints extends CollectionBase<Constraint> {
 
@@ -20,7 +19,7 @@ public class Constraints extends CollectionBase<Constraint> {
   }
 
   public static class Builder {
-    private final Set<Constraint> set = new LinkedHashSet<>();
+    private final ImmutableSet.Builder<Constraint> set = ImmutableSet.builder();
 
     public Builder add(String from, String to) {
       set.add(Constraint.of(from, to));
@@ -28,7 +27,7 @@ public class Constraints extends CollectionBase<Constraint> {
     }
 
     public Constraints build() {
-      return new Constraints(set);
+      return new Constraints(set.build());
     }
   }
 
