@@ -23,7 +23,7 @@ public class Constraints extends CollectionBase<Constraint> {
     private final Set<Constraint> set = new LinkedHashSet<>();
 
     public Builder add(String from, String to) {
-      set.add(new Constraint(from, to));
+      set.add(Constraint.of(from, to));
       return this;
     }
 
