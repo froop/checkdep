@@ -1,20 +1,18 @@
 package checkdep.value.depend;
 
+import static java.util.Collections.*;
 import static com.google.common.collect.Sets.*;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Set;
-import java.util.TreeSet;
 
 import checkdep.util.CollectionBase;
+import com.google.common.collect.Iterables;
 
 public class PackageNames extends CollectionBase<PackageName> {
-  protected static final PackageNames EMPTY =
-      new PackageNames(Collections.emptySet());
+  protected static final PackageNames EMPTY = new PackageNames(emptySet());
 
-  public static PackageNames of(Collection<PackageName> raw) {
-    return new PackageNames(new TreeSet<>(raw));
+  public static PackageNames of(Iterable<PackageName> raw) {
+    return new PackageNames(newTreeSet(raw));
   }
 
   public static PackageNames of(PackageName raw) {
@@ -34,8 +32,6 @@ public class PackageNames extends CollectionBase<PackageName> {
   }
 
   public PackageNames merge(PackageNames adding) {
-    Set<PackageName> res = newHashSet(this);
-    res.addAll(newHashSet(adding));
-    return PackageNames.of(res);
+    return of(Iterables.concat(this, adding));
   }
 }
