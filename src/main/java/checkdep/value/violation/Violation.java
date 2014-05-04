@@ -5,7 +5,11 @@ import checkdep.value.depend.PackageName;
 
 public class Violation extends DependArrow {
 
-  public Violation(PackageName from, PackageName to) {
+  public static Violation of(PackageName from, PackageName to) {
+    return new Violation(from, to);
+  }
+
+  private Violation(PackageName from, PackageName to) {
     super(from, to);
   }
 }

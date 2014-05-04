@@ -44,7 +44,7 @@ public class DefaultConstraintChecker implements ConstraintChecker {
         .collect(toSet()));
     return actual.getEfferents().stream()
         .filter(item -> !expectPackages.contains(item))
-        .map(item -> new Violation(actual.getName(), item))
+        .map(item -> Violation.of(actual.getName(), item))
         .collect(toSet());
   }
 }
