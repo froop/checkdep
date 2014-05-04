@@ -8,12 +8,13 @@ import checkdep.value.depend.Dependencies;
 import checkdep.value.exclude.ExcludePackages;
 import checkdep.value.source.SourceDirectories;
 import checkdep.value.source.SourceDirectory;
+import lombok.NonNull;
 
 public class JDependImportParser implements ImportParser {
   private final SourceDirectories source;
   private final ExcludePackages exclude;
 
-  public JDependImportParser(SourceDirectories source, ExcludePackages exclude) {
+  public JDependImportParser(@NonNull SourceDirectories source, @NonNull ExcludePackages exclude) {
     this.source = source;
     this.exclude = exclude;
   }
