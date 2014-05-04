@@ -48,7 +48,6 @@ public void test() {
   -> 解析対象の .class で Java 8 の Stream を使っているとエラーになるので、https://github.com/froop/jdepend で対応
 * Project Lombok 1.12.6 (http://projectlombok.org/)
 * Google Guava 17 (http://code.google.com/p/guava-libraries/)
-* Apache Commons Lang 3.3 (http://commons.apache.org/proper/commons-lang/)
 
 
 存在理由
@@ -75,7 +74,7 @@ Javaは、クラスに対しては可視性(public/protected/package)を指定�
 * Java 8 を使ってみる。関数型に興味。Stream API とか便利そう。
 * Apache Maven を使ってみる。ビルドツールはAntしか使ってなかったので。
 * Lombok を使ってみる。Getter、Constructor, equals, hashCode, toString。
-* Google Guava を使ってみる。ImmutableCollection目当て。
+* Google Guava を使ってみる。ImmutableCollection目当て。Commons Lang の代替。
 
 
 実現方式

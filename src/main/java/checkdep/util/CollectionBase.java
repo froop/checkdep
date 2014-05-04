@@ -5,13 +5,14 @@ import static java.util.stream.Collectors.*;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
 import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableList;
 
-public abstract class CollectionBase<E> extends ValueBase implements Iterable<E> {
+public abstract class CollectionBase<E> implements Iterable<E> {
   private final ImmutableCollection<E> raw;
 
   protected CollectionBase(Collection<E> raw) {
@@ -41,5 +42,28 @@ public abstract class CollectionBase<E> extends ValueBase implements Iterable<E>
 
   public Stream<E> stream() {
     return raw.stream();
+  }
+
+  @Override
+  public int hashCode() {
+    return raw.hashCode();
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    @SuppressWarnings("unchecked")
+    CollectionBase<E> other = (CollectionBase<E>) obj;
+    return Objects.equals(raw, other.raw);
+  }
+
+  @Override
+  public String toString() {
+    return raw.toString();
   }
 }

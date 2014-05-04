@@ -1,9 +1,9 @@
 package checkdep.value.violation;
 
-import org.apache.commons.lang3.builder.CompareToBuilder;
-
 import checkdep.value.depend.DependArrow;
 import checkdep.value.depend.PackageName;
+
+import com.google.common.collect.ComparisonChain;
 
 public class Violation extends DependArrow implements Comparable<Violation> {
 
@@ -13,9 +13,9 @@ public class Violation extends DependArrow implements Comparable<Violation> {
 
   @Override
   public int compareTo(Violation other) {
-    return new CompareToBuilder()
-        .append(getFrom(), other.getFrom())
-        .append(getTo(), other.getTo())
-        .toComparison();
+    return ComparisonChain.start()
+        .compare(getFrom(), other.getFrom())
+        .compare(getTo(), other.getTo())
+        .result();
   }
 }
