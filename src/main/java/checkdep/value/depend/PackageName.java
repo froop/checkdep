@@ -1,22 +1,12 @@
 package checkdep.value.depend;
 
-import lombok.NonNull;
-import lombok.Value;
+import checkdep.util.StringValueBase;
 
-@Value
-public class PackageName implements Comparable<PackageName> {
+public class PackageName extends StringValueBase<PackageName> {
   public static final PackageName NULL = new PackageName("");
 
-  @NonNull
-  private final String value;
-
   public PackageName(String value) {
-    this.value = value.trim();
-  }
-
-  @Override
-  public int compareTo(PackageName other) {
-    return getValue().compareTo(other.getValue());
+    super(value);
   }
 
   public boolean matches(PackageName other) {
@@ -34,10 +24,5 @@ public class PackageName implements Comparable<PackageName> {
 
   private boolean matchesWithWildcard(String str1, String str2) {
     return str2.startsWith(str1.replaceAll("\\.?\\*$", ""));
-  }
-
-  @Override
-  public String toString() {
-      return value;
   }
 }
