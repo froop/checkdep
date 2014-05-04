@@ -1,19 +1,7 @@
 package checkdep.value.depend;
 
 public interface Dependency extends Comparable<Dependency> {
-
-  static final Dependency NULL = new Dependency() {
-
-    @Override
-    public PackageName getName() {
-      return PackageName.NULL;
-    }
-
-    @Override
-    public PackageNames getEfferents() {
-      return PackageNames.EMPTY;
-    }
-  };
+  static final Dependency NULL = DefaultDependency.of(PackageName.NULL, PackageNames.EMPTY);
 
   PackageName getName();
 
