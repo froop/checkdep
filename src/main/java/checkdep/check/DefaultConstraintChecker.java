@@ -16,7 +16,7 @@ import lombok.NonNull;
 public class DefaultConstraintChecker implements ConstraintChecker {
   private final Constraints constraints;
 
-  public DefaultConstraintChecker(@NonNull Constraints constraints) {
+  DefaultConstraintChecker(@NonNull Constraints constraints) {
     this.constraints = constraints;
   }
 
