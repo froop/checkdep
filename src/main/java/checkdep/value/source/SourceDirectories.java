@@ -9,6 +9,6 @@ public class SourceDirectories extends CollectionBase<SourceDirectory> {
   }
 
   private SourceDirectories(String... directories) {
-    super(directories, SourceDirectory::new);
+    super(directories, SourceDirectory::of);
   }
 }

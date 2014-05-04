@@ -8,7 +8,11 @@ import checkdep.util.StringValueBase;
  */
 public class SourceDirectory extends StringValueBase {
 
-  public SourceDirectory(String value) {
+  public static SourceDirectory of(String value) {
+    return new SourceDirectory(value);
+  }
+
+  private SourceDirectory(String value) {
     super(value);
   }
 }
