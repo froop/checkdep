@@ -25,6 +25,6 @@ public interface Dependency extends Comparable<Dependency> {
   }
 
   static Dependency of(PackageName name, PackageNames efferents) {
-    return new DefaultDependency(name, efferents);
+    return DefaultDependency.of(name, efferents);
   }
 }
