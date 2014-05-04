@@ -19,13 +19,13 @@ class JDependDependency implements Dependency {
 
   @Override
   public PackageName getName() {
-    return new PackageName(raw.getName());
+    return PackageName.of(raw.getName());
   }
 
   @Override
   public PackageNames getEfferents() {
     return PackageNames.of(getRawEfferents().stream()
-        .map(item -> new PackageName(item.getName()))
+        .map(item -> PackageName.of(item.getName()))
         .collect(toSet()));
   }
 

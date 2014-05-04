@@ -16,7 +16,7 @@ public class DependArrow implements Comparable<DependArrow> {
   }
 
   protected DependArrow(String from, String to) {
-    this(new PackageName(from), new PackageName(to));
+    this(PackageName.of(from), PackageName.of(to));
   }
 
   @Override

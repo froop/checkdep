@@ -19,8 +19,8 @@ public class DependenciesTest {
     Dependencies target = Dependencies.of(list);
 
     Iterator<PackageName> it = target.keySet().iterator();
-    assertThat(it.next(), is(new PackageName("test1")));
-    assertThat(it.next(), is(new PackageName("test2")));
+    assertThat(it.next(), is(PackageName.of("test1")));
+    assertThat(it.next(), is(PackageName.of("test2")));
     assertFalse(it.hasNext());
   }
 
@@ -33,7 +33,7 @@ public class DependenciesTest {
 
     @Override
     public PackageName getName() {
-      return new PackageName(name);
+      return PackageName.of(name);
     }
 
     @Override

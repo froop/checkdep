@@ -28,10 +28,10 @@ public class ConstraintsTest {
     Dependencies res = target.toDependencies();
 
     Iterator<Entry<PackageName, Dependency>> it = res.entrySet().iterator();
-    assertEntry(it.next(), new PackageName("a"),
-        newHashSet(new PackageName("b"), new PackageName("c")));
-    assertEntry(it.next(), new PackageName("b"),
-        newHashSet(new PackageName("c")));
+    assertEntry(it.next(), PackageName.of("a"),
+        newHashSet(PackageName.of("b"), PackageName.of("c")));
+    assertEntry(it.next(), PackageName.of("b"),
+        newHashSet(PackageName.of("c")));
     assertFalse(it.hasNext());
   }
 

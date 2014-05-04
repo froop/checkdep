@@ -160,9 +160,9 @@ public class DefaultConstraintCheckerTest {
 
     public static DependencyStub of(String name, Collection<String> efferents) {
       return new DependencyStub(
-          new PackageName(name),
+          PackageName.of(name),
           efferents.stream()
-            .map(PackageName::new)
+            .map(PackageName::of)
             .collect(Collectors.toSet()));
     }
 

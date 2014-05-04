@@ -4,7 +4,11 @@ import checkdep.util.StringValueBase;
 
 public class PackageName extends StringValueBase {
 
-  public PackageName(String value) {
+  public static PackageName of(String value) {
+    return new PackageName(value);
+  }
+
+  private PackageName(String value) {
     super(value);
   }
 

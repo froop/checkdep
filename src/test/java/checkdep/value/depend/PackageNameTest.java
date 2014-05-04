@@ -9,6 +9,6 @@ public class PackageNameTest {
 
   @Test
   public void testTrim() {
-    assertThat(new PackageName(" abc ").getValue(), is("abc"));
+    assertThat(PackageName.of(" abc ").getValue(), is("abc"));
   }
 }
