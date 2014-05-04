@@ -22,7 +22,11 @@ public class Constraints extends CollectionBase<Constraint> {
     private final ImmutableSet.Builder<Constraint> set = ImmutableSet.builder();
 
     public Builder add(String from, String to) {
-      set.add(Constraint.of(from, to));
+      return add(Constraint.of(from, to));
+    }
+
+    public Builder add(Constraint element) {
+      set.add(element);
       return this;
     }
 
