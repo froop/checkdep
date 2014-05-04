@@ -2,7 +2,7 @@ package checkdep.value.depend;
 
 import checkdep.util.StringValueBase;
 
-public class PackageName extends StringValueBase<PackageName> {
+public class PackageName extends StringValueBase {
   public static final PackageName NULL = new PackageName("");
 
   public PackageName(String value) {

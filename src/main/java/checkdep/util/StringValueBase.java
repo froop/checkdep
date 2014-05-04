@@ -6,7 +6,7 @@ import lombok.experimental.NonFinal;
 
 @Value
 @NonFinal
-public class StringValueBase<T extends StringValueBase<?>> implements Comparable<T> {
+public class StringValueBase implements Comparable<StringValueBase> {
 
   @NonNull
   private final String value;
@@ -16,7 +16,7 @@ public class StringValueBase<T extends StringValueBase<?>> implements Comparable
   }
 
   @Override
-  public int compareTo(T other) {
+  public int compareTo(StringValueBase other) {
     return getValue().compareTo(other.getValue());
   }
 
