@@ -3,12 +3,13 @@ package checkdep.value.violation;
 import checkdep.value.depend.DependArrow;
 import checkdep.value.depend.PackageName;
 import lombok.Delegate;
+import lombok.NonNull;
 import lombok.Value;
 
 @Value
 public class Violation implements Comparable<Violation> {
 
-  public static Violation of(PackageName from, PackageName to) {
+  public static Violation of(@NonNull PackageName from, @NonNull PackageName to) {
     return new Violation(DependArrow.of(from, to));
   }
 

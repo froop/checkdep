@@ -1,6 +1,7 @@
 package checkdep.value.source;
 
 import checkdep.util.StringValueBase;
+import lombok.NonNull;
 
 /**
  * 元ディレクトリ.
@@ -8,7 +9,7 @@ import checkdep.util.StringValueBase;
  */
 public class SourceDirectory extends StringValueBase {
 
-  public static SourceDirectory of(String value) {
+  public static SourceDirectory of(@NonNull String value) {
     return new SourceDirectory(value);
   }
 

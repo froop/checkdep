@@ -1,10 +1,11 @@
 package checkdep.value.depend;
 
 import checkdep.util.StringValueBase;
+import lombok.NonNull;
 
 public class PackageName extends StringValueBase {
 
-  public static PackageName of(String value) {
+  public static PackageName of(@NonNull String value) {
     return new PackageName(value);
   }
 
@@ -12,7 +13,7 @@ public class PackageName extends StringValueBase {
     super(value);
   }
 
-  public boolean matches(PackageName other) {
+  public boolean matches(@NonNull PackageName other) {
     String wildcard = ".*";
     String str1 = this.getValue();
     String str2 = other.getValue();
