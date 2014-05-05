@@ -6,11 +6,11 @@ import lombok.Delegate;
 import lombok.NonNull;
 import lombok.Value;
 
-@Value
+@Value(staticConstructor = "of")
 public class Violation implements Comparable<Violation> {
 
   public static Violation of(@NonNull PackageName from, @NonNull PackageName to) {
-    return new Violation(DependArrow.of(from, to));
+    return of(DependArrow.of(from, to));
   }
 
   @Delegate
