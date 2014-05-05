@@ -8,16 +8,14 @@ import java.util.Set;
 import com.google.common.collect.ImmutableMap;
 import lombok.NonNull;
 import lombok.Value;
-import lombok.experimental.NonFinal;
 
-@Value
-@NonFinal
+@Value(staticConstructor = "of")
 public class ImmutableMapBase<K, V> {
 
   @NonNull
   private final ImmutableMap<K, V> map;
 
-  protected ImmutableMapBase(Map<K, V> map) {
+  public ImmutableMapBase(Map<K, V> map) {
     this.map = ImmutableMap.copyOf(map);
   }
 

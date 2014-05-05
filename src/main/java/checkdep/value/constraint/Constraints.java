@@ -47,6 +47,6 @@ public final class Constraints extends ImmutableSetBase<Constraint> {
 //    for (Constraint item : this) {
 //      map.put(item.getFrom(), item.getTo());
 //    }
-    return Dependencies.of(res);
+    return Dependencies.ofPackageMap(res);
   }
 }
