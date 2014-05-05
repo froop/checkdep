@@ -1,6 +1,5 @@
 package checkdep.value.depend;
 
-import java.util.Collection;
 import java.util.Collections;
 
 import checkdep.util.CollectionBase;
@@ -11,7 +10,7 @@ public class PackageNames extends CollectionBase<PackageName> {
   public static final PackageNames EMPTY =
       new PackageNames(Collections.emptySet());
 
-  public static PackageNames of(Collection<PackageName> raw) {
+  public static PackageNames of(Iterable<PackageName> raw) {
     return new PackageNames(ImmutableSet.copyOf(raw));
   }
 
@@ -19,7 +18,7 @@ public class PackageNames extends CollectionBase<PackageName> {
     return new PackageNames(raw);
   }
 
-  private PackageNames(Collection<PackageName> raw) {
+  private PackageNames(Iterable<PackageName> raw) {
     super(raw);
   }
 
