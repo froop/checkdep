@@ -6,7 +6,7 @@ import lombok.NonNull;
 /**
  * 除外するパッケージ.
  */
-public class ExcludePackage extends StringValueBase {
+public final class ExcludePackage extends StringValueBase {
 
   public static ExcludePackage of(@NonNull String value) {
     return new ExcludePackage(value);

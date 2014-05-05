@@ -10,7 +10,7 @@ import checkdep.value.depend.PackageName;
 import checkdep.value.depend.PackageNames;
 import com.google.common.collect.ImmutableSet;
 
-public class Constraints extends ImmutableSetBase<Constraint> {
+public final class Constraints extends ImmutableSetBase<Constraint> {
 
   public static Builder builder() {
     return new Constraints.Builder();

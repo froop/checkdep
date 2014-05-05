@@ -7,7 +7,7 @@ import lombok.NonNull;
  * 元ディレクトリ.
  * 解析するclasspath.
  */
-public class SourceDirectory extends StringValueBase {
+public final class SourceDirectory extends StringValueBase {
 
   public static SourceDirectory of(@NonNull String value) {
     return new SourceDirectory(value);

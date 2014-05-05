@@ -3,7 +3,7 @@ package checkdep.value.depend;
 import checkdep.util.StringValueBase;
 import lombok.NonNull;
 
-public class PackageName extends StringValueBase {
+public final class PackageName extends StringValueBase {
 
   public static PackageName of(@NonNull String value) {
     return new PackageName(value);

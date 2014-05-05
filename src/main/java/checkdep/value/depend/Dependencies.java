@@ -7,7 +7,7 @@ import java.util.Map;
 
 import checkdep.util.ImmutableMapBase;
 
-public class Dependencies extends ImmutableMapBase<PackageName, Dependency> {
+public final class Dependencies extends ImmutableMapBase<PackageName, Dependency> {
 
   public static Dependencies of(Collection<Dependency> collection) {
     return new Dependencies(collection.stream().collect(

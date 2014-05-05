@@ -7,7 +7,7 @@ import com.google.common.collect.Iterables;
 
 import com.google.common.collect.ImmutableSet;
 
-public class PackageNames extends ImmutableSetBase<PackageName> {
+public final class PackageNames extends ImmutableSetBase<PackageName> {
   public static final PackageNames EMPTY = new PackageNames(emptySet());
 
   public static PackageNames of(Iterable<PackageName> raw) {
