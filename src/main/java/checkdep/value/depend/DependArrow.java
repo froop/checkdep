@@ -1,6 +1,7 @@
 package checkdep.value.depend;
 
 import com.google.common.collect.ComparisonChain;
+import lombok.NonNull;
 import lombok.Value;
 
 @Value
@@ -14,7 +15,9 @@ public class DependArrow implements Comparable<DependArrow> {
     return of(PackageName.of(from), PackageName.of(to));
   }
 
+  @NonNull
   private final PackageName from;
+  @NonNull
   private final PackageName to;
 
   @Override
