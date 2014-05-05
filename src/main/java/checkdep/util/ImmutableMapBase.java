@@ -9,7 +9,7 @@ import com.google.common.collect.ImmutableMap;
 import lombok.NonNull;
 import lombok.Value;
 
-@Value(staticConstructor = "of")
+@Value
 public class ImmutableMapBase<K, V> {
 
   @NonNull
