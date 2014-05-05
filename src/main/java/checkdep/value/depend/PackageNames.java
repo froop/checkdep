@@ -1,19 +1,18 @@
 package checkdep.value.depend;
 
-import static com.google.common.collect.Sets.*;
-
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Set;
 
 import checkdep.util.CollectionBase;
+
+import com.google.common.collect.ImmutableSet;
 
 public class PackageNames extends CollectionBase<PackageName> {
   public static final PackageNames EMPTY =
       new PackageNames(Collections.emptySet());
 
   public static PackageNames of(Collection<PackageName> raw) {
-    return new PackageNames(raw);
+    return new PackageNames(ImmutableSet.copyOf(raw));
   }
 
   public static PackageNames of(PackageName raw) {
@@ -33,8 +32,9 @@ public class PackageNames extends CollectionBase<PackageName> {
   }
 
   public PackageNames merge(PackageNames adding) {
-    Set<PackageName> res = newHashSet(this);
-    res.addAll(newHashSet(adding));
-    return PackageNames.of(res);
+    return PackageNames.of(ImmutableSet.<PackageName>builder()
+        .addAll(this)
+        .addAll(adding)
+        .build());
   }
 }
