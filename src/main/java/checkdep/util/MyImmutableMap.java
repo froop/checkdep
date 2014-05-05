@@ -9,14 +9,15 @@ import com.google.common.collect.ImmutableMap;
 import lombok.NonNull;
 import lombok.Value;
 
+//@Value(staticConstructor = "of") なぜかIntelliJだとエラーになるのでof()を手動化
 @Value
-public class ImmutableMapBase<K, V> {
+public class MyImmutableMap<K, V> {
 
-  public static <K, V> ImmutableMapBase<K, V> of(ImmutableMap<K, V> map) {
-    return new ImmutableMapBase<>(map);
+  public static <K, V> MyImmutableMap<K, V> of(ImmutableMap<K, V> map) {
+    return new MyImmutableMap<>(map);
   }
 
-  public static <K, V> ImmutableMapBase<K, V> copyOf(Map<? extends K, ? extends V> map) {
+  public static <K, V> MyImmutableMap<K, V> copyOf(Map<? extends K, ? extends V> map) {
     return of(ImmutableMap.copyOf(map));
   }
 
