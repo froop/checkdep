@@ -2,17 +2,22 @@ package checkdep.util;
 
 import java.util.Collection;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
 import com.google.common.collect.ImmutableMap;
 import lombok.NonNull;
+import lombok.Value;
+import lombok.experimental.NonFinal;
 
+@Value
+@NonFinal
 public class ImmutableMapBase<K, V> {
+
+  @NonNull
   private final ImmutableMap<K, V> map;
 
-  protected ImmutableMapBase(@NonNull Map<K, V> map) {
+  protected ImmutableMapBase(Map<K, V> map) {
     this.map = ImmutableMap.copyOf(map);
   }
 
@@ -30,24 +35,6 @@ public class ImmutableMapBase<K, V> {
 
   public Set<Map.Entry<K, V>> entrySet() {
     return map.entrySet();
-  }
-
-  @Override
-  public int hashCode() {
-    return map.hashCode();
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    @SuppressWarnings("unchecked")
-    ImmutableMapBase<K, V> other = (ImmutableMapBase<K, V>) obj;
-    return Objects.equals(map, other.map);
   }
 
   @Override
