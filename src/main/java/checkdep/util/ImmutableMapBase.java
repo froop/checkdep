@@ -9,11 +9,15 @@ import com.google.common.collect.ImmutableMap;
 import lombok.NonNull;
 import lombok.Value;
 
-@Value(staticConstructor = "delegateOf")
+@Value
 public class ImmutableMapBase<K, V> {
 
-  public static <K, V> ImmutableMapBase<K, V> of(Map<K, V> map) {
-    return delegateOf(ImmutableMap.copyOf(map));
+  public static <K, V> ImmutableMapBase<K, V> of(ImmutableMap<K, V> map) {
+    return new ImmutableMapBase<>(map);
+  }
+
+  public static <K, V> ImmutableMapBase<K, V> copyOf(Map<? extends K, ? extends V> map) {
+    return of(ImmutableMap.copyOf(map));
   }
 
   @NonNull

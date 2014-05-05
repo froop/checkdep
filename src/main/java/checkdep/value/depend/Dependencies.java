@@ -23,7 +23,7 @@ public final class Dependencies {
   }
 
   private static Dependencies toDependencies(Map<PackageName, Dependency> map) {
-    return of(ImmutableMapBase.of(map));
+    return of(ImmutableMapBase.copyOf(map));
   }
 
   public static Dependencies of(Map<PackageName, PackageNames> map) {
