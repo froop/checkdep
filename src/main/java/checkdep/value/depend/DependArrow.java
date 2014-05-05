@@ -4,7 +4,7 @@ import com.google.common.collect.ComparisonChain;
 import lombok.NonNull;
 import lombok.Value;
 
-@Value(staticConstructor="of")
+@Value(staticConstructor = "of")
 public class DependArrow implements Comparable<DependArrow> {
 
   public static DependArrow of(String from, String to) {

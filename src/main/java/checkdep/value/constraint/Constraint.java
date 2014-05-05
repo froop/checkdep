@@ -5,7 +5,7 @@ import lombok.Delegate;
 import lombok.NonNull;
 import lombok.Value;
 
-@Value
+@Value(staticConstructor = "of")
 public class Constraint {
 
   public static Constraint of(@NonNull String from, @NonNull String to) {
