@@ -11,7 +11,7 @@ import lombok.NonNull;
 import lombok.Value;
 
 @Value(staticConstructor = "of")
-public final class Dependencies {
+public class Dependencies {
 
   @Delegate
   @NonNull

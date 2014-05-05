@@ -6,7 +6,7 @@ import lombok.NonNull;
 import lombok.Value;
 
 @Value(staticConstructor = "of")
-public final class SourceDirectories implements Iterable<SourceDirectory> {
+public class SourceDirectories implements Iterable<SourceDirectory> {
 
   public static SourceDirectories of(String... directories) {
     return of(MyImmutableSet.of(directories, SourceDirectory::of));

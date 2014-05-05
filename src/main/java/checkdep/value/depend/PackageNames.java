@@ -10,7 +10,7 @@ import lombok.NonNull;
 import lombok.Value;
 
 @Value(staticConstructor = "of")
-public final class PackageNames implements Iterable<PackageName> {
+public class PackageNames implements Iterable<PackageName> {
   public static final PackageNames EMPTY = PackageNames.copyOf(emptySet());
 
   public static PackageNames copyOf(Iterable<PackageName> raw) {

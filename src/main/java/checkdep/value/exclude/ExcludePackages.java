@@ -6,7 +6,7 @@ import lombok.NonNull;
 import lombok.Value;
 
 @Value(staticConstructor = "of")
-public final class ExcludePackages implements Iterable<ExcludePackage> {
+public class ExcludePackages implements Iterable<ExcludePackage> {
 
   public static ExcludePackages of(String... packages) {
     return of(MyImmutableSet.of(packages, ExcludePackage::of));
