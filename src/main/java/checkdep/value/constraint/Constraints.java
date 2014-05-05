@@ -2,7 +2,6 @@ package checkdep.value.constraint;
 
 import static java.util.stream.Collectors.*;
 
-import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
@@ -32,7 +31,7 @@ public class Constraints extends CollectionBase<Constraint> {
     }
   }
 
-  private Constraints(Collection<Constraint> collection) {
+  private Constraints(Iterable<Constraint> collection) {
     super(collection);
   }
 
