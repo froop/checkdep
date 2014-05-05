@@ -9,15 +9,15 @@ import com.google.common.collect.ImmutableMap;
 import lombok.NonNull;
 import lombok.Value;
 
-@Value
+@Value(staticConstructor = "delegateOf")
 public class ImmutableMapBase<K, V> {
+
+  public static <K, V> ImmutableMapBase<K, V> of(Map<K, V> map) {
+    return delegateOf(ImmutableMap.copyOf(map));
+  }
 
   @NonNull
   private final ImmutableMap<K, V> map;
-
-  public ImmutableMapBase(Map<K, V> map) {
-    this.map = ImmutableMap.copyOf(map);
-  }
 
   public Optional<V> get(@NonNull K key) {
     return Optional.ofNullable(map.get(key));

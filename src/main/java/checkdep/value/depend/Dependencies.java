@@ -23,10 +23,10 @@ public final class Dependencies {
   }
 
   private static Dependencies toDependencies(Map<PackageName, Dependency> map) {
-    return of(new ImmutableMapBase<>(map));
+    return of(ImmutableMapBase.of(map));
   }
 
-  public static Dependencies ofPackageMap(Map<PackageName, PackageNames> map) {
+  public static Dependencies of(Map<PackageName, PackageNames> map) {
     return of(map.entrySet().stream()
         .map(item -> Dependency.of(item.getKey(), item.getValue()))
         .collect(toSet()));
