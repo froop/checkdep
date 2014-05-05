@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 @Value
 @NonFinal
-abstract class ImmutableCollectionBase<E> implements Iterable<E> {
+abstract class MyImmutableCollection<E> implements Iterable<E> {
 
   @NonNull
   private final ImmutableCollection<E> raw;

@@ -8,7 +8,7 @@ import lombok.NonNull;
 import java.util.Arrays;
 import java.util.function.Function;
 
-public abstract class ImmutableSetBase<E> extends ImmutableCollectionBase<E> {
+public abstract class ImmutableSetBase<E> extends MyImmutableCollection<E> {
 
   protected ImmutableSetBase(@NonNull Iterable<E> raw) {
     super(ImmutableSet.copyOf(raw));
