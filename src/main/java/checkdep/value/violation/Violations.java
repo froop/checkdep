@@ -1,8 +1,8 @@
 package checkdep.value.violation;
 
-import checkdep.util.ImmutableSetBase;
+import checkdep.util.MyImmutableSet;
 
-public final class Violations extends ImmutableSetBase<Violation> {
+public final class Violations extends MyImmutableSet<Violation> {
 
   public static Violations of(Iterable<Violation> raw) {
     return new Violations(raw);
