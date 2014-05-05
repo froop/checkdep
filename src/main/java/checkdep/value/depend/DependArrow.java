@@ -17,7 +17,7 @@ public class DependArrow implements Comparable<DependArrow> {
   private final PackageName to;
 
   @Override
-  public int compareTo(DependArrow other) {
+  public int compareTo(@NonNull DependArrow other) {
     return ComparisonChain.start()
         .compare(getFrom(), other.getFrom())
         .compare(getTo(), other.getTo())
