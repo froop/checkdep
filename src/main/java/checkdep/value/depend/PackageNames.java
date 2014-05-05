@@ -1,25 +1,24 @@
 package checkdep.value.depend;
 
 import static java.util.Collections.*;
-import static com.google.common.collect.Sets.*;
-
-import java.util.Collection;
 
 import checkdep.util.CollectionBase;
 import com.google.common.collect.Iterables;
 
+import com.google.common.collect.ImmutableSet;
+
 public class PackageNames extends CollectionBase<PackageName> {
-  protected static final PackageNames EMPTY = new PackageNames(emptySet());
+  public static final PackageNames EMPTY = new PackageNames(emptySet());
 
   public static PackageNames of(Iterable<PackageName> raw) {
-    return new PackageNames(newTreeSet(raw));
+    return new PackageNames(ImmutableSet.copyOf(raw));
   }
 
   public static PackageNames of(PackageName raw) {
     return new PackageNames(raw);
   }
 
-  private PackageNames(Collection<PackageName> raw) {
+  private PackageNames(Iterable<PackageName> raw) {
     super(raw);
   }
 

@@ -3,7 +3,6 @@ package checkdep.util;
 import static java.util.stream.Collectors.*;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -16,7 +15,7 @@ import lombok.NonNull;
 public abstract class CollectionBase<E> implements Iterable<E> {
   private final ImmutableCollection<E> raw;
 
-  protected CollectionBase(@NonNull Collection<E> raw) {
+  protected CollectionBase(@NonNull Iterable<E> raw) {
     this.raw = ImmutableList.copyOf(raw);
   }
 
