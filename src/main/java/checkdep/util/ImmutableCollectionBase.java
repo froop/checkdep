@@ -1,30 +1,17 @@
 package checkdep.util;
 
-import static java.util.stream.Collectors.*;
-
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Objects;
-import java.util.function.Function;
 import java.util.stream.Stream;
 
 import com.google.common.collect.ImmutableCollection;
-import com.google.common.collect.ImmutableList;
 import lombok.NonNull;
 
-public abstract class CollectionBase<E> implements Iterable<E> {
+abstract class ImmutableCollectionBase<E> implements Iterable<E> {
   private final ImmutableCollection<E> raw;
 
-  protected CollectionBase(@NonNull Iterable<E> raw) {
-    this.raw = ImmutableList.copyOf(raw);
-  }
-
-  protected CollectionBase(@NonNull E raw) {
-    this.raw = ImmutableList.of(raw);
-  }
-
-  protected CollectionBase(@NonNull String[] raw, @NonNull Function<String, E> mapper) {
-    this(Arrays.stream(raw).map(mapper).collect(toList()));
+  protected ImmutableCollectionBase(@NonNull ImmutableCollection<E> raw) {
+    this.raw = raw;
   }
 
   @Override
@@ -54,7 +41,7 @@ public abstract class CollectionBase<E> implements Iterable<E> {
       return false;
     }
     @SuppressWarnings("unchecked")
-    CollectionBase<E> other = (CollectionBase<E>) obj;
+    ImmutableCollectionBase<E> other = (ImmutableCollectionBase<E>) obj;
     return Objects.equals(raw, other.raw);
   }
 

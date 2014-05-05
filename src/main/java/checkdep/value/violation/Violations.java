@@ -1,8 +1,8 @@
 package checkdep.value.violation;
 
-import checkdep.util.CollectionBase;
+import checkdep.util.ImmutableSetBase;
 
-public class Violations extends CollectionBase<Violation> {
+public class Violations extends ImmutableSetBase<Violation> {
 
   public Violations(Iterable<Violation> set) {
     super(set);

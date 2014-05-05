@@ -2,12 +2,12 @@ package checkdep.value.depend;
 
 import static java.util.Collections.*;
 
-import checkdep.util.CollectionBase;
+import checkdep.util.ImmutableSetBase;
 import com.google.common.collect.Iterables;
 
 import com.google.common.collect.ImmutableSet;
 
-public class PackageNames extends CollectionBase<PackageName> {
+public class PackageNames extends ImmutableSetBase<PackageName> {
   public static final PackageNames EMPTY = new PackageNames(emptySet());
 
   public static PackageNames of(Iterable<PackageName> raw) {

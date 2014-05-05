@@ -4,14 +4,14 @@ import static java.util.stream.Collectors.*;
 
 import java.util.Map;
 
-import checkdep.util.CollectionBase;
+import checkdep.util.ImmutableSetBase;
 import checkdep.value.depend.DependArrow;
 import checkdep.value.depend.Dependencies;
 import checkdep.value.depend.PackageName;
 import checkdep.value.depend.PackageNames;
 import com.google.common.collect.ImmutableSet;
 
-public class Constraints extends CollectionBase<Constraint> {
+public class Constraints extends ImmutableSetBase<Constraint> {
 
   public static Builder builder() {
     return new Constraints.Builder();

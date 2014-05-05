@@ -1,8 +1,8 @@
 package checkdep.value.exclude;
 
-import checkdep.util.CollectionBase;
+import checkdep.util.ImmutableSetBase;
 
-public class ExcludePackages extends CollectionBase<ExcludePackage> {
+public class ExcludePackages extends ImmutableSetBase<ExcludePackage> {
 
   public static ExcludePackages of(String... packages) {
     return new ExcludePackages(packages);
