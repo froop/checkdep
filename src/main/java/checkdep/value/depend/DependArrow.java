@@ -2,22 +2,20 @@ package checkdep.value.depend;
 
 import com.google.common.collect.ComparisonChain;
 import lombok.Value;
-import lombok.experimental.NonFinal;
 
 @Value
-@NonFinal
 public class DependArrow implements Comparable<DependArrow> {
+
+  public static DependArrow of(PackageName from, PackageName to) {
+    return new DependArrow(from, to);
+  }
+
+  public static DependArrow of(String from, String to) {
+    return of(PackageName.of(from), PackageName.of(to));
+  }
+
   private final PackageName from;
   private final PackageName to;
-
-  protected DependArrow(PackageName from, PackageName to) {
-    this.from = from;
-    this.to = to;
-  }
-
-  protected DependArrow(String from, String to) {
-    this(PackageName.of(from), PackageName.of(to));
-  }
 
   @Override
   public int compareTo(DependArrow other) {

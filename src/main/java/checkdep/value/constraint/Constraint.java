@@ -1,14 +1,16 @@
 package checkdep.value.constraint;
 
 import checkdep.value.depend.DependArrow;
+import lombok.Delegate;
+import lombok.Value;
 
-public class Constraint extends DependArrow {
+@Value
+public class Constraint {
 
-  public static Constraint of (String from, String to) {
-    return new Constraint(from, to);
+  public static Constraint of(String from, String to) {
+    return new Constraint(DependArrow.of(from, to));
   }
 
-  private Constraint(String from, String to) {
-    super(from, to);
-  }
+  @Delegate
+  private final DependArrow delegate;
 }
