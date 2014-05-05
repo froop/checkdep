@@ -39,6 +39,6 @@ public class ConstraintsTest {
       PackageName name, Set<PackageName> efferents) {
     assertThat(item.getKey(), is(name));
     assertThat(item.getValue().getName(), is(name));
-    assertThat(item.getValue().getEfferents(), is(PackageNames.of(efferents)));
+    assertThat(item.getValue().getEfferents(), is(PackageNames.copyOf(efferents)));
   }
 }

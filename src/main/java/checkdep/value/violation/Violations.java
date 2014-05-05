@@ -1,14 +1,18 @@
 package checkdep.value.violation;
 
 import checkdep.util.MyImmutableSet;
+import lombok.Delegate;
+import lombok.NonNull;
+import lombok.Value;
 
-public final class Violations extends MyImmutableSet<Violation> {
+@Value(staticConstructor = "of")
+public class Violations implements Iterable<Violation> {
 
-  public static Violations of(Iterable<Violation> raw) {
-    return new Violations(raw);
+  public static Violations copyOf(Iterable<Violation> raw) {
+    return of(MyImmutableSet.copyOf(raw));
   }
 
-  private Violations(Iterable<Violation> raw) {
-    super(raw);
-  }
+  @Delegate
+  @NonNull
+  private final MyImmutableSet<Violation> delegate;
 }

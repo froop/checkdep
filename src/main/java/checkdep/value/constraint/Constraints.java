@@ -9,8 +9,12 @@ import checkdep.value.depend.Dependencies;
 import checkdep.value.depend.PackageName;
 import checkdep.value.depend.PackageNames;
 import com.google.common.collect.ImmutableSet;
+import lombok.Delegate;
+import lombok.NonNull;
+import lombok.Value;
 
-public final class Constraints extends MyImmutableSet<Constraint> {
+@Value(staticConstructor = "of")
+public class Constraints implements Iterable<Constraint> {
 
   public static Builder builder() {
     return new Constraints.Builder();
@@ -29,13 +33,17 @@ public final class Constraints extends MyImmutableSet<Constraint> {
     }
 
     public Constraints build() {
-      return new Constraints(set.build());
+      return Constraints.of(set.build());
     }
   }
 
-  private Constraints(Iterable<Constraint> collection) {
-    super(collection);
+  private static Constraints of(ImmutableSet<Constraint> raw) {
+    return of(MyImmutableSet.of(raw));
   }
+
+  @Delegate
+  @NonNull
+  private final MyImmutableSet<Constraint> delegate;
 
   public Dependencies toDependencies() {
     // TODO: 直接Dependencies.of()に渡すとエラーになるため、一時変数に格納

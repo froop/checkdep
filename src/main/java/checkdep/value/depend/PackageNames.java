@@ -5,32 +5,31 @@ import static java.util.Collections.*;
 import checkdep.util.MyImmutableSet;
 import com.google.common.collect.Iterables;
 
-import com.google.common.collect.ImmutableSet;
+import lombok.Delegate;
+import lombok.NonNull;
+import lombok.Value;
 
-public final class PackageNames extends MyImmutableSet<PackageName> {
-  public static final PackageNames EMPTY = new PackageNames(emptySet());
+@Value(staticConstructor = "of")
+public final class PackageNames implements Iterable<PackageName> {
+  public static final PackageNames EMPTY = PackageNames.copyOf(emptySet());
 
-  public static PackageNames of(Iterable<PackageName> raw) {
-    return new PackageNames(ImmutableSet.copyOf(raw));
+  public static PackageNames copyOf(Iterable<PackageName> raw) {
+    return of(MyImmutableSet.copyOf(raw));
   }
 
   public static PackageNames of(PackageName raw) {
-    return new PackageNames(raw);
+    return of(MyImmutableSet.of(raw));
   }
 
-  private PackageNames(Iterable<PackageName> raw) {
-    super(raw);
-  }
-
-  private PackageNames(PackageName raw) {
-    super(raw);
-  }
+  @Delegate
+  @NonNull
+  private final MyImmutableSet<PackageName> delegate;
 
   public boolean contains(PackageName target) {
     return stream().anyMatch(target::matches);
   }
 
   public PackageNames concat(PackageNames adding) {
-    return of(Iterables.concat(this, adding));
+    return copyOf(Iterables.concat(this, adding));
   }
 }

@@ -27,7 +27,7 @@ public class DefaultConstraintChecker implements ConstraintChecker {
     if (!needlessSet.isEmpty()) {
       throw new NeedlessConstraintException(needlessSet.toString());
     }
-    return Violations.of(check(dependencies, constraintDeps));
+    return Violations.copyOf(check(dependencies, constraintDeps));
   }
 
   private List<Violation> check(Dependencies actualDeps, Dependencies expectDeps) {
@@ -39,7 +39,7 @@ public class DefaultConstraintChecker implements ConstraintChecker {
   }
 
   private Set<Violation> checkEfferents(Dependency actual, Dependencies expects) {
-    PackageNames expectPackages = PackageNames.of(expects.values().stream()
+    PackageNames expectPackages = PackageNames.copyOf(expects.values().stream()
         .flatMap(item -> item.getEfferents().stream())
         .collect(toSet()));
     return actual.getEfferents().stream()

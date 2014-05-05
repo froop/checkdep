@@ -1,14 +1,18 @@
 package checkdep.value.exclude;
 
 import checkdep.util.MyImmutableSet;
+import lombok.Delegate;
+import lombok.NonNull;
+import lombok.Value;
 
-public final class ExcludePackages extends MyImmutableSet<ExcludePackage> {
+@Value(staticConstructor = "of")
+public final class ExcludePackages implements Iterable<ExcludePackage> {
 
   public static ExcludePackages of(String... packages) {
-    return new ExcludePackages(packages);
+    return of(MyImmutableSet.of(packages, ExcludePackage::of));
   }
 
-  private ExcludePackages(String... packages) {
-    super(packages, ExcludePackage::of);
-  }
+  @Delegate
+  @NonNull
+  private final MyImmutableSet<ExcludePackage> delegate;
 }
