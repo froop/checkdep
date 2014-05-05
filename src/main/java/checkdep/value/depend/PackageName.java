@@ -28,7 +28,7 @@ public class PackageName implements Comparable<PackageName> {
 
   @Override
   public int compareTo(PackageName other) {
-    return getValue().compareTo(other.getValue());
+    return value.compareTo(other.value);
   }
 
   @Override
