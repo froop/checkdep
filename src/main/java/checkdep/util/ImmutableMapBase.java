@@ -9,10 +9,10 @@ import java.util.Set;
 import com.google.common.collect.ImmutableMap;
 import lombok.NonNull;
 
-public class MapBase<K, V> {
+public class ImmutableMapBase<K, V> {
   private final ImmutableMap<K, V> map;
 
-  protected MapBase(@NonNull Map<K, V> map) {
+  protected ImmutableMapBase(@NonNull Map<K, V> map) {
     this.map = ImmutableMap.copyOf(map);
   }
 
@@ -46,7 +46,7 @@ public class MapBase<K, V> {
       return false;
     }
     @SuppressWarnings("unchecked")
-    MapBase<K, V> other = (MapBase<K, V>) obj;
+    ImmutableMapBase<K, V> other = (ImmutableMapBase<K, V>) obj;
     return Objects.equals(map, other.map);
   }
 

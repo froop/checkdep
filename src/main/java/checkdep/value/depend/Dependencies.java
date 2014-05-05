@@ -5,9 +5,9 @@ import static java.util.stream.Collectors.*;
 import java.util.Collection;
 import java.util.Map;
 
-import checkdep.util.MapBase;
+import checkdep.util.ImmutableMapBase;
 
-public class Dependencies extends MapBase<PackageName, Dependency> {
+public class Dependencies extends ImmutableMapBase<PackageName, Dependency> {
 
   public static Dependencies of(Collection<Dependency> collection) {
     return new Dependencies(collection.stream().collect(
