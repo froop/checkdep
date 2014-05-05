@@ -4,7 +4,11 @@ import checkdep.util.ImmutableSetBase;
 
 public final class Violations extends ImmutableSetBase<Violation> {
 
-  public Violations(Iterable<Violation> set) {
-    super(set);
+  public static Violations of(Iterable<Violation> raw) {
+    return new Violations(raw);
+  }
+
+  private Violations(Iterable<Violation> raw) {
+    super(raw);
   }
 }

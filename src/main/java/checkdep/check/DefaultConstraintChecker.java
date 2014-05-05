@@ -27,7 +27,7 @@ public class DefaultConstraintChecker implements ConstraintChecker {
     if (!needlessSet.isEmpty()) {
       throw new NeedlessConstraintException(needlessSet.toString());
     }
-    return new Violations(check(dependencies, constraintDeps));
+    return Violations.of(check(dependencies, constraintDeps));
   }
 
   private List<Violation> check(Dependencies actualDeps, Dependencies expectDeps) {
