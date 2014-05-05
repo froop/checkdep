@@ -5,16 +5,15 @@ import static com.google.common.collect.Sets.*;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
-import java.util.TreeSet;
 
 import checkdep.util.CollectionBase;
 
 public class PackageNames extends CollectionBase<PackageName> {
-  protected static final PackageNames EMPTY =
+  public static final PackageNames EMPTY =
       new PackageNames(Collections.emptySet());
 
   public static PackageNames of(Collection<PackageName> raw) {
-    return new PackageNames(new TreeSet<>(raw));
+    return new PackageNames(raw);
   }
 
   public static PackageNames of(PackageName raw) {
