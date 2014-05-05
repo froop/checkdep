@@ -1,7 +1,7 @@
 package checkdep.check;
 
 /**
- * 不必要な制約.
+ * 不必要な制約の例外.
  * 存在しない依存を制約として定義している場合は無駄なので知らせる.
  */
 class NeedlessConstraintException extends RuntimeException {
