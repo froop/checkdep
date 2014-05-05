@@ -1,18 +1,19 @@
 package checkdep.util;
 
-import java.util.Iterator;
-import java.util.Objects;
-import java.util.stream.Stream;
-
 import com.google.common.collect.ImmutableCollection;
 import lombok.NonNull;
+import lombok.Value;
+import lombok.experimental.NonFinal;
 
+import java.util.Iterator;
+import java.util.stream.Stream;
+
+@Value
+@NonFinal
 abstract class ImmutableCollectionBase<E> implements Iterable<E> {
-  private final ImmutableCollection<E> raw;
 
-  protected ImmutableCollectionBase(@NonNull ImmutableCollection<E> raw) {
-    this.raw = raw;
-  }
+  @NonNull
+  private final ImmutableCollection<E> raw;
 
   @Override
   public Iterator<E> iterator() {
@@ -25,24 +26,6 @@ abstract class ImmutableCollectionBase<E> implements Iterable<E> {
 
   public Stream<E> stream() {
     return raw.stream();
-  }
-
-  @Override
-  public int hashCode() {
-    return raw.hashCode();
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    @SuppressWarnings("unchecked")
-    ImmutableCollectionBase<E> other = (ImmutableCollectionBase<E>) obj;
-    return Objects.equals(raw, other.raw);
   }
 
   @Override
