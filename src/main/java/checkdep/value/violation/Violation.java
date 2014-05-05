@@ -17,7 +17,7 @@ public class Violation implements Comparable<Violation> {
   private final DependArrow delegate;
 
   @Override
-  public int compareTo(Violation other) {
+  public int compareTo(@NonNull Violation other) {
     return delegate.compareTo(other.delegate);
   }
 
