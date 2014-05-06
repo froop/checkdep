@@ -14,10 +14,6 @@ import lombok.Value;
 @Value(staticConstructor = "of")
 public class Dependencies {
 
-  @Delegate
-  @NonNull
-  private final ReadOnlyMap<PackageName, Dependency> delegate;
-
   public static Dependencies of(Collection<Dependency> collection) {
 //    return toDependencies(collection.stream().collect(toMap(Dependency::getName, item -> item)));
     return toDependencies(Maps.uniqueIndex(collection, Dependency::getName));
@@ -32,6 +28,10 @@ public class Dependencies {
         .map(item -> Dependency.of(item.getKey(), item.getValue()))
         .collect(toSet()));
   }
+
+  @Delegate
+  @NonNull
+  private final ReadOnlyMap<PackageName, Dependency> delegate;
 
   public Dependencies find(PackageName name) {
     return of(values().stream()
