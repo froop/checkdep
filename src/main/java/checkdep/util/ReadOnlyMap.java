@@ -34,5 +34,9 @@ public interface ReadOnlyMap<K, V> {
     return getRaw().entrySet();
   }
 
+  default int size() {
+    return getRaw().size();
+  }
+
   ImmutableMap<K, V> getRaw();
 }
