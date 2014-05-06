@@ -4,8 +4,6 @@ import static com.google.common.collect.Sets.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-import java.util.Iterator;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.junit.Test;
@@ -27,18 +25,16 @@ public class ConstraintsTest {
 
     Dependencies res = target.toDependencies();
 
-    Iterator<Entry<PackageName, Dependency>> it = res.entrySet().iterator();
-    assertEntry(it.next(), PackageName.of("a"),
+    assertElement(res, PackageName.of("a"),
         newHashSet(PackageName.of("b"), PackageName.of("c")));
-    assertEntry(it.next(), PackageName.of("b"),
+    assertElement(res, PackageName.of("b"),
         newHashSet(PackageName.of("c")));
-    assertFalse(it.hasNext());
+    assertThat(res.size(), is(2));
   }
 
-  private void assertEntry(Entry<PackageName, Dependency> item,
-      PackageName name, Set<PackageName> efferents) {
-    assertThat(item.getKey(), is(name));
-    assertThat(item.getValue().getName(), is(name));
-    assertThat(item.getValue().getEfferents(), is(PackageNames.copyOf(efferents)));
+  private void assertElement(Dependencies deps, PackageName name, Set<PackageName> efferents) {
+    Dependency item = deps.get(name).get();
+    assertThat(item.getName(), is(name));
+    assertThat(item.getEfferents(), is(PackageNames.copyOf(efferents)));
   }
 }
