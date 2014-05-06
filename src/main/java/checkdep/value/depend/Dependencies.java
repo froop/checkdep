@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Map;
 
 import checkdep.util.ReadOnlyMap;
+import com.google.common.collect.Maps;
 import lombok.Delegate;
 import lombok.NonNull;
 import lombok.Value;
@@ -18,7 +19,8 @@ public class Dependencies {
   private final ReadOnlyMap<PackageName, Dependency> delegate;
 
   public static Dependencies of(Collection<Dependency> collection) {
-    return toDependencies(collection.stream().collect(toMap(Dependency::getName, item -> item)));
+//    return toDependencies(collection.stream().collect(toMap(Dependency::getName, item -> item)));
+    return toDependencies(Maps.uniqueIndex(collection, Dependency::getName));
   }
 
   private static Dependencies toDependencies(Map<PackageName, Dependency> map) {
