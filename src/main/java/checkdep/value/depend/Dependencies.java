@@ -18,8 +18,7 @@ public class Dependencies {
   private final ReadOnlyMap<PackageName, Dependency> delegate;
 
   public static Dependencies of(Collection<Dependency> collection) {
-    return toDependencies(collection.stream().collect(
-        toMap(Dependency::getName, item -> item)));
+    return toDependencies(collection.stream().collect(toMap(Dependency::getName, item -> item)));
   }
 
   private static Dependencies toDependencies(Map<PackageName, Dependency> map) {
