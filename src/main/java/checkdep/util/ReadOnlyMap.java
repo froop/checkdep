@@ -13,35 +13,35 @@ import lombok.Value;
 @Value
 public class ReadOnlyMap<K, V> {
 
-  public static <K, V> ReadOnlyMap<K, V> of(ImmutableMap<K, V> map) {
-    return new ReadOnlyMap<>(map);
+  public static <K, V> ReadOnlyMap<K, V> of(ImmutableMap<K, V> raw) {
+    return new ReadOnlyMap<>(raw);
   }
 
-  public static <K, V> ReadOnlyMap<K, V> copyOf(Map<? extends K, ? extends V> map) {
-    return of(ImmutableMap.copyOf(map));
+  public static <K, V> ReadOnlyMap<K, V> copyOf(Map<? extends K, ? extends V> raw) {
+    return of(ImmutableMap.copyOf(raw));
   }
 
   @NonNull
-  private final ImmutableMap<K, V> map;
+  private final ImmutableMap<K, V> raw;
 
   public Optional<V> get(@NonNull K key) {
-    return Optional.ofNullable(map.get(key));
+    return Optional.ofNullable(raw.get(key));
   }
 
   public Set<K> keySet() {
-    return map.keySet();
+    return raw.keySet();
   }
 
   public Collection<V> values() {
-    return map.values();
+    return raw.values();
   }
 
   public Set<Map.Entry<K, V>> entrySet() {
-    return map.entrySet();
+    return raw.entrySet();
   }
 
   @Override
   public String toString() {
-    return map.toString();
+    return raw.toString();
   }
 }
