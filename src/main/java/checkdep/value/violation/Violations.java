@@ -1,6 +1,6 @@
 package checkdep.value.violation;
 
-import checkdep.util.MyImmutableSet;
+import checkdep.util.ReadOnlySet;
 import lombok.Delegate;
 import lombok.NonNull;
 import lombok.Value;
@@ -9,10 +9,10 @@ import lombok.Value;
 public class Violations implements Iterable<Violation> {
 
   public static Violations copyOf(Iterable<Violation> raw) {
-    return of(MyImmutableSet.copyOf(raw));
+    return of(ReadOnlySet.copyOf(raw));
   }
 
   @Delegate
   @NonNull
-  private final MyImmutableSet<Violation> delegate;
+  private final ReadOnlySet<Violation> delegate;
 }

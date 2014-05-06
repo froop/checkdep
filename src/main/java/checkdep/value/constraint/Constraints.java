@@ -4,7 +4,7 @@ import static java.util.stream.Collectors.*;
 
 import java.util.Map;
 
-import checkdep.util.MyImmutableSet;
+import checkdep.util.ReadOnlySet;
 import checkdep.value.depend.Dependencies;
 import checkdep.value.depend.PackageName;
 import checkdep.value.depend.PackageNames;
@@ -38,12 +38,12 @@ public class Constraints implements Iterable<Constraint> {
   }
 
   private static Constraints of(ImmutableSet<Constraint> raw) {
-    return of(MyImmutableSet.of(raw));
+    return of(ReadOnlySet.of(raw));
   }
 
   @Delegate
   @NonNull
-  private final MyImmutableSet<Constraint> delegate;
+  private final ReadOnlySet<Constraint> delegate;
 
   public Dependencies toDependencies() {
     // TODO: 直接Dependencies.of()に渡すとエラーになるため、一時変数に格納

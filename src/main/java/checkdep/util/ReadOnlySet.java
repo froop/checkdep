@@ -13,21 +13,21 @@ import java.util.stream.Stream;
 
 //TODO @Value(staticConstructor = "of")
 @Value
-public class MyImmutableSet<E> implements Iterable<E> {
+public class ReadOnlySet<E> implements Iterable<E> {
 
-  public static <E> MyImmutableSet<E> of(@NonNull ImmutableSet<E> raw) {
-    return new MyImmutableSet<>(raw);
+  public static <E> ReadOnlySet<E> of(@NonNull ImmutableSet<E> raw) {
+    return new ReadOnlySet<>(raw);
   }
 
-  public static <E> MyImmutableSet<E> of(@NonNull E raw) {
+  public static <E> ReadOnlySet<E> of(@NonNull E raw) {
     return of(ImmutableSet.of(raw));
   }
 
-  public static <E> MyImmutableSet<E> of(@NonNull String[] raw, @NonNull Function<String, E> mapper) {
+  public static <E> ReadOnlySet<E> of(@NonNull String[] raw, @NonNull Function<String, E> mapper) {
     return copyOf(Arrays.stream(raw).map(mapper).collect(toSet()));
   }
 
-  public static <E> MyImmutableSet<E> copyOf(@NonNull Iterable<? extends E> raw) {
+  public static <E> ReadOnlySet<E> copyOf(@NonNull Iterable<? extends E> raw) {
     return of(ImmutableSet.copyOf(raw));
   }
 

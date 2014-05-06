@@ -1,6 +1,6 @@
 package checkdep.value.exclude;
 
-import checkdep.util.MyImmutableSet;
+import checkdep.util.ReadOnlySet;
 import lombok.Delegate;
 import lombok.NonNull;
 import lombok.Value;
@@ -9,10 +9,10 @@ import lombok.Value;
 public class ExcludePackages implements Iterable<ExcludePackage> {
 
   public static ExcludePackages of(String... packages) {
-    return of(MyImmutableSet.of(packages, ExcludePackage::of));
+    return of(ReadOnlySet.of(packages, ExcludePackage::of));
   }
 
   @Delegate
   @NonNull
-  private final MyImmutableSet<ExcludePackage> delegate;
+  private final ReadOnlySet<ExcludePackage> delegate;
 }

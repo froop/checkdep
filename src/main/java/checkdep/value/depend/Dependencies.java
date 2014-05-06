@@ -5,7 +5,7 @@ import static java.util.stream.Collectors.*;
 import java.util.Collection;
 import java.util.Map;
 
-import checkdep.util.MyImmutableMap;
+import checkdep.util.ReadOnlyMap;
 import lombok.Delegate;
 import lombok.NonNull;
 import lombok.Value;
@@ -15,7 +15,7 @@ public class Dependencies {
 
   @Delegate
   @NonNull
-  private final MyImmutableMap<PackageName, Dependency> delegate;
+  private final ReadOnlyMap<PackageName, Dependency> delegate;
 
   public static Dependencies of(Collection<Dependency> collection) {
     return Dependencies.toDependencies(collection.stream().collect(
@@ -23,7 +23,7 @@ public class Dependencies {
   }
 
   private static Dependencies toDependencies(Map<PackageName, Dependency> map) {
-    return of(MyImmutableMap.copyOf(map));
+    return of(ReadOnlyMap.copyOf(map));
   }
 
   public static Dependencies of(Map<PackageName, PackageNames> map) {
