@@ -7,41 +7,32 @@ import java.util.Set;
 
 import com.google.common.collect.ImmutableMap;
 import lombok.NonNull;
-import lombok.Value;
 
-//@Value(staticConstructor = "of") なぜかIntelliJだとエラーになるのでof()を手動化
-@Value
-public class ReadOnlyMap<K, V> {
+public interface ReadOnlyMap<K, V> {
 
-  public static <K, V> ReadOnlyMap<K, V> of(ImmutableMap<K, V> raw) {
-    return new ReadOnlyMap<>(raw);
+  static <K, V> ReadOnlyMap<K, V> of(ImmutableMap<K, V> raw) {
+    return new ReadOnlyMapImpl<>(raw);
   }
 
-  public static <K, V> ReadOnlyMap<K, V> copyOf(Map<? extends K, ? extends V> raw) {
+  static <K, V> ReadOnlyMap<K, V> copyOf(Map<? extends K, ? extends V> raw) {
     return of(ImmutableMap.copyOf(raw));
   }
 
-  @NonNull
-  private final ImmutableMap<K, V> raw;
-
-  public Optional<V> get(@NonNull K key) {
-    return Optional.ofNullable(raw.get(key));
+  default Optional<V> get(@NonNull K key) {
+    return Optional.ofNullable(getRaw().get(key));
   }
 
-  public Set<K> keySet() {
-    return raw.keySet();
+  default Set<K> keySet() {
+    return getRaw().keySet();
   }
 
-  public Collection<V> values() {
-    return raw.values();
+  default Collection<V> values() {
+    return getRaw().values();
   }
 
-  public Set<Map.Entry<K, V>> entrySet() {
-    return raw.entrySet();
+  default Set<Map.Entry<K, V>> entrySet() {
+    return getRaw().entrySet();
   }
 
-  @Override
-  public String toString() {
-    return raw.toString();
-  }
+  ImmutableMap<K, V> getRaw();
 }
