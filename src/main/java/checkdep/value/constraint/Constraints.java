@@ -21,19 +21,19 @@ public class Constraints implements Iterable<Constraint> {
   }
 
   public static class Builder {
-    private final ImmutableSet.Builder<Constraint> set = ImmutableSet.builder();
+    private final ImmutableSet.Builder<Constraint> setBuilder = ImmutableSet.builder();
 
     public Builder add(String from, String to) {
       return add(Constraint.of(from, to));
     }
 
     public Builder add(Constraint element) {
-      set.add(element);
+      setBuilder.add(element);
       return this;
     }
 
     public Constraints build() {
-      return Constraints.of(set.build());
+      return Constraints.of(setBuilder.build());
     }
   }
 
@@ -43,7 +43,7 @@ public class Constraints implements Iterable<Constraint> {
 
   @Delegate
   @NonNull
-  private final ReadOnlySet<Constraint> delegate;
+  private final ReadOnlySet<Constraint> set;
 
   public Dependencies toDependencies() {
     // TODO: 直接Dependencies.of()に渡すとエラーになるため、一時変数に格納

@@ -14,5 +14,5 @@ public class Violations implements Iterable<Violation> {
 
   @Delegate
   @NonNull
-  private final ReadOnlySet<Violation> delegate;
+  private final ReadOnlySet<Violation> set;
 }

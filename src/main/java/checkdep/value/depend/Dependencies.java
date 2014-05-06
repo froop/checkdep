@@ -31,7 +31,7 @@ public class Dependencies {
 
   @Delegate
   @NonNull
-  private final ReadOnlyMap<PackageName, Dependency> delegate;
+  private final ReadOnlyMap<PackageName, Dependency> map;
 
   public Dependencies find(PackageName name) {
     return of(values().stream()

@@ -14,5 +14,5 @@ public class SourceDirectories implements Iterable<SourceDirectory> {
 
   @Delegate
   @NonNull
-  private final ReadOnlySet<SourceDirectory> delegate;
+  private final ReadOnlySet<SourceDirectory> set;
 }

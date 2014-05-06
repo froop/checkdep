@@ -23,7 +23,7 @@ public class PackageNames implements Iterable<PackageName> {
 
   @Delegate
   @NonNull
-  private final ReadOnlySet<PackageName> delegate;
+  private final ReadOnlySet<PackageName> set;
 
   public boolean contains(PackageName target) {
     return stream().anyMatch(target::matches);

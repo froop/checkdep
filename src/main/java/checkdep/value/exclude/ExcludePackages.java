@@ -14,5 +14,5 @@ public class ExcludePackages implements Iterable<ExcludePackage> {
 
   @Delegate
   @NonNull
-  private final ReadOnlySet<ExcludePackage> delegate;
+  private final ReadOnlySet<ExcludePackage> set;
 }
