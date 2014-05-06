@@ -34,6 +34,10 @@ public interface ReadOnlyMap<K, V> {
     return getRaw().entrySet();
   }
 
+  default boolean isEmpty() {
+    return getRaw().isEmpty();
+  }
+
   default int size() {
     return getRaw().size();
   }
