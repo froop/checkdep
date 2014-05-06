@@ -11,7 +11,7 @@ import lombok.Value;
 
 @Value(staticConstructor = "of")
 public class PackageNames implements Iterable<PackageName> {
-  public static final PackageNames EMPTY = PackageNames.copyOf(emptySet());
+  public static final PackageNames EMPTY = copyOf(emptySet());
 
   public static PackageNames copyOf(Iterable<PackageName> raw) {
     return of(MyImmutableSet.copyOf(raw));
