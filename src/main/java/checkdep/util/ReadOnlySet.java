@@ -42,6 +42,12 @@ public interface ReadOnlySet<E> extends ReadOnlyCollection<E> {
 
   // for Lombok @Delegate
   @Override
+  default int size() {
+    return ReadOnlyCollection.super.size();
+  }
+
+  // for Lombok @Delegate
+  @Override
   default Stream<E> stream() {
     return ReadOnlyCollection.super.stream();
   }

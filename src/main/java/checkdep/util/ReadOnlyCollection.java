@@ -16,6 +16,10 @@ public interface ReadOnlyCollection<E> extends Iterable<E> {
     return getRaw().isEmpty();
   }
 
+  default int size() {
+    return getRaw().size();
+  }
+
   default Stream<E> stream() {
     return getRaw().stream();
   }
